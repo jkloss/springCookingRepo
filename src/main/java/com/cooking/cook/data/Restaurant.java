@@ -1,11 +1,12 @@
 package com.cooking.cook.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Restaurant {
 
-    private List<Pizza> menu;
+    private List<Pizza> menu = new ArrayList<>();
     private boolean isRestaurantOpen;
     private String nameOfRestaurant;
 
