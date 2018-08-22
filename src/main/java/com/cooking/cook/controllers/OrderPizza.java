@@ -32,6 +32,6 @@ public class OrderPizza {
 
     @GetMapping("/showOrder/{name}")
     public List<Pizza> showOrder(@PathVariable String name) {
-        return choosePizza.getChoosenPizza(name);
+        return choosePizza.getChosenPizza(name);
     }
 }

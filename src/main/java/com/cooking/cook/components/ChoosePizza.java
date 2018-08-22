@@ -16,7 +16,7 @@ public class ChoosePizza {
         this.restaurant = restaurant;
     }
 
-    public List<Pizza> getChoosenPizza(String name) {
+    public List<Pizza> getChosenPizza(String name) {
 
         return restaurant.getMenu().stream()
                 .filter(pizza -> pizza.getName().equals(name))
