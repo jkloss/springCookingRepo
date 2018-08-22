@@ -1,8 +1,5 @@
 package com.cooking.cook.data;
 
-import org.springframework.stereotype.Component;
-
-
 public class Pizza {
     private double price;
     private int diameter;

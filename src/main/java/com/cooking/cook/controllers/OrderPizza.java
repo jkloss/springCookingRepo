@@ -1,4 +1,4 @@
-package com.cooking.cook.components;
+package com.cooking.cook.controllers;
 
 import com.cooking.cook.data.Pizza;
 import org.springframework.web.bind.annotation.GetMapping;
