@@ -4,8 +4,13 @@ import com.cooking.cook.data.Pizza;
 import com.cooking.cook.data.Restaurant;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.minBy;
 import static java.util.stream.Collectors.toList;
 
 @RestController
@@ -55,5 +60,19 @@ public class OrderPizza {
         return restaurant.getMenu().stream()
                 .filter(pizza -> pizza.getName().startsWith(letter))
                 .collect(toList());
+    }
+
+    @GetMapping("/choosePizzaUnder40Diam")
+    public List<Pizza> choosePizzaUnder40Diam() {
+        return restaurant.getMenu().stream()
+                .filter(pizza -> pizza.getDiameter() < 40)
+                .collect(toList());
+    }
+
+    @GetMapping("/chooseTheCheapestPizza")
+    public Pizza chooseTheCheapestPizza() {
+        return restaurant.getMenu().stream()
+                .min(Comparator.comparingDouble(Pizza::getPrice))
+                .orElse(null);
     }
 }
