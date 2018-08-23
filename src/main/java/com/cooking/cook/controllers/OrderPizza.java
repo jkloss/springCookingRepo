@@ -43,5 +43,17 @@ public class OrderPizza {
     }
 
     @GetMapping("/sortNames")
-    public 
+    public List<String> sortPizzaNames() {
+        return restaurant.getMenu().stream()
+                .map(Pizza::getName)
+                .sorted()
+                .collect(toList());
+    }
+
+    @GetMapping("/choosePizzaStartsWith/{letter}")
+    public List<Pizza> choosePizzaStartsWith(@PathVariable String letter) {
+        return restaurant.getMenu().stream()
+                .filter(pizza -> pizza.getName().startsWith(letter))
+                .collect(toList());
+    }
 }
