@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 public class Pizza {
 
     @Id
