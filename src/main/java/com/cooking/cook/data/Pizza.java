@@ -1,16 +1,41 @@
 package com.cooking.cook.data;
 
-public class Pizza {
-    private double price;
-    private int diameter;
-    private String name;
-    private boolean isPizzaAvailable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-    public Pizza(double price, int diameter, String name, boolean isPizzaAvailable) {
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+public class Pizza {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    @NotBlank
+    private double price;
+    @NotBlank
+    private int diameter;
+    @NotBlank
+    private String name;
+
+
+    public Pizza(double price, int diameter, String name, Long id) {
         this.price = price;
         this.diameter = diameter;
         this.name = name;
-        this.isPizzaAvailable = isPizzaAvailable;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getPrice() {
@@ -37,13 +62,6 @@ public class Pizza {
         this.name = name;
     }
 
-    public boolean isPizzaAvailable() {
-        return isPizzaAvailable;
-    }
-
-    public void setPizzaAvailable(boolean pizzaAvailable) {
-        isPizzaAvailable = pizzaAvailable;
-    }
 
     @Override
     public String toString() {
@@ -51,7 +69,6 @@ public class Pizza {
         sb.append("price=").append(price);
         sb.append(", diameter=").append(diameter);
         sb.append(", name='").append(name).append('\'');
-        sb.append(", isPizzaAvailable=").append(isPizzaAvailable);
         sb.append('}');
         return sb.toString();
     }
