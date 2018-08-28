@@ -18,5 +18,7 @@ public class OrderPizzaService  {
         return pizzaRepository.findAll();
     }
 
-
+    public void createPizza(Pizza pizza) {
+        pizzaRepository.save(pizza);
+    }
 }

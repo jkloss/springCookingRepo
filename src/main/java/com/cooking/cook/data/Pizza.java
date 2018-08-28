@@ -2,13 +2,11 @@ package com.cooking.cook.data;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Pizza {
 
     @Id
