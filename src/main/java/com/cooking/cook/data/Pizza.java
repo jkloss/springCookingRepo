@@ -21,6 +21,8 @@ public class Pizza {
     @NotBlank
     private String name;
 
+    public Pizza() {
+    }
 
     public Pizza(double price, int diameter, String name, Long id) {
         this.price = price;

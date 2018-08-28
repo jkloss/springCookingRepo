@@ -2,12 +2,9 @@ package com.cooking.cook.controllers;
 
 import com.cooking.cook.data.Pizza;
 import com.cooking.cook.service.OrderPizzaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,9 +20,11 @@ public class OrderPizza {
         return orderPizzaService.getPizzaList();
     }
 
-    @PostMapping("/addPizza")
-    public void createPizza(@RequestBody @Valid Pizza pizza) {
-        orderPizzaService.createPizza(pizza);
+
+    @RequestMapping(value = "/addPizza", method = RequestMethod.GET)
+    public ModelAndView getForm() {
+        ModelAndView model = new ModelAndView("addPizzaForm");
+        return model;
     }
 //    @GetMapping("/showOrder/{name}")
 //    public List<Pizza> showOrder(@PathVariable String name) {
