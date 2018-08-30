@@ -1,30 +1,41 @@
 package com.cooking.cook.controllers;
 
 import com.cooking.cook.data.Pizza;
-import com.cooking.cook.service.OrderPizzaService;
+import com.cooking.cook.service.PizzaService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @RestController
-public class OrderPizza {
+public class PizzaController {
 
-    private OrderPizzaService orderPizzaService;
-    public OrderPizza(OrderPizzaService orderPizzaService) {
-        this.orderPizzaService = orderPizzaService;
+    private PizzaService pizzaService;
+    public PizzaController(PizzaService pizzaService) {
+        this.pizzaService = pizzaService;
     }
 
     @GetMapping("/showMenu")
     public List<Pizza> showMenu() {
-        return orderPizzaService.getPizzaList();
+        return pizzaService.getPizzaList();
     }
 
 
     @RequestMapping(value = "/addPizza", method = RequestMethod.GET)
     public ModelAndView getForm() {
-        ModelAndView model = new ModelAndView("addPizzaForm");
-        return model;
+        return new ModelAndView("addPizzaForm.html");
+    }
+
+    @RequestMapping(value = "submitPizzaForm", method = RequestMethod.POST)
+    public ModelAndView submitPizzaForm(@RequestParam("pizzaName") String name,
+                                        @RequestParam("pizzaPrice") double price,
+                                        @RequestParam("pizzaDiameter") int diameter) {
+     ModelAndView model = new ModelAndView("submitPizzaForm.html");
+
+     model.addObject("msg", "Details: Name: " + name + "Price: " + price + "Diameter: "
+             + diameter);
+
+     return model;
     }
 //    @GetMapping("/showOrder/{name}")
 //    public List<Pizza> showOrder(@PathVariable String name) {
