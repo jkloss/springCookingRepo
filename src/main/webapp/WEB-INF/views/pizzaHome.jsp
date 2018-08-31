@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Welcome in adding pizza page</h3>
-<form:form method="post" action="${pageContext.request.contextPath}/addPizza" modelAttribute="pizza">
+<form:form method="post" action="/addPizza" modelAttribute="pizzaAtr">
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>
