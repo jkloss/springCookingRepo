@@ -2,23 +2,26 @@ package com.cooking.cook.data;
 
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @EnableTransactionManagement
+@Table(name = "PIZZA")
 public class Pizza {
 
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private Long id;
     @NotBlank
+    @Column(name = "PRICE")
     private double price;
     @NotBlank
+    @Column(name = "DIAMETER")
     private int diameter;
     @NotBlank
+    @Column(name = "NAME")
     private String name;
 
     public Pizza() {
