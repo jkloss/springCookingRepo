@@ -5,9 +5,7 @@ import com.cooking.cook.service.PizzaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -20,13 +18,13 @@ public class PizzaController {
         this.pizzaService = pizzaService;
     }
 
-    @GetMapping("/pizza")
+    @RequestMapping(method = RequestMethod.GET, value = "/pizza")
     public ModelAndView showPizzaForm() {
-        return new ModelAndView("pizzaHome", "pizzaAtr", new Pizza());
+        return new ModelAndView("pizzaHome", "pizza", new Pizza());
     }
 
-    @PostMapping("/addPizza")
-    public String submitPizza(@Valid @ModelAttribute("pizzaAtr") Pizza pizza,
+    @RequestMapping(value = "/addPizza", method = RequestMethod.POST)
+    public String submitPizza(@Valid @ModelAttribute("pizza") Pizza pizza,
                               BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "error";

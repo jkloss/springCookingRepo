@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Welcome in adding pizza page</h3>
-<form:form method="post" action="/addPizza" modelAttribute="pizzaAtr">
+<form:form method="post" action="/java/com/cooking/cook/controllers/addPizza" modelAttribute="pizza">
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>
