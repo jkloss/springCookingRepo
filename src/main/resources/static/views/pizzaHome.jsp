@@ -8,7 +8,7 @@
 <body>
 <h3>bla bla</h3>
 
-<form:form method="POST" action="/addPizza" modelAttribute="pizza">
+<form:form method="POST" action="/static/addPizza" modelAttribute="pizza">
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>
