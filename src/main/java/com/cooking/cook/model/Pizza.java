@@ -1,4 +1,4 @@
-package com.cooking.cook.data;
+package com.cooking.cook.model;
 
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 

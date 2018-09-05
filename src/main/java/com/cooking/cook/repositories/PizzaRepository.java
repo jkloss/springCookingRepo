@@ -1,6 +1,6 @@
 package com.cooking.cook.repositories;
 
-import com.cooking.cook.data.Pizza;
+import com.cooking.cook.model.Pizza;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

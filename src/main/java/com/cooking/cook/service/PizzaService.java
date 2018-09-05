@@ -1,6 +1,6 @@
 package com.cooking.cook.service;
 
-import com.cooking.cook.data.Pizza;
+import com.cooking.cook.model.Pizza;
 import com.cooking.cook.repositories.PizzaRepository;
 import org.springframework.stereotype.Component;
 

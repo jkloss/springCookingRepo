@@ -1,6 +1,6 @@
 package com.cooking.cook.controllers;
 
-import com.cooking.cook.data.Pizza;
+import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
