@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ejnwknfkwj</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>PizzaForm</h1>
+<form action="#" th:action="@{/pizzaHome.html}" th:object="${pizza}" method="post">
+    <p>ID: <input type="text" th:field="*{id}" /></p>
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Price: <input type="text" th:field="*{price}" /></p>
+    <p>Diameter: <input type="text" th:field="*{diameter}" /></p>
+    <input type="submit" value="Click here">
+</form>
+</body>
+</html>
