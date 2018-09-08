@@ -16,10 +16,10 @@ public class Pizza {
     private Long id;
     @NotBlank
     @Column(name = "PRICE")
-    private double price;
+    private Double price;
     @NotBlank
     @Column(name = "DIAMETER")
-    private int diameter;
+    private Integer diameter;
     @NotBlank
     @Column(name = "NAME")
     private String name;
@@ -27,7 +27,7 @@ public class Pizza {
     public Pizza() {
     }
 
-    public Pizza(double price, int diameter, String name, Long id) {
+    public Pizza(Double price, Integer diameter, String name, Long id) {
         this.price = price;
         this.diameter = diameter;
         this.name = name;
@@ -42,19 +42,19 @@ public class Pizza {
         this.id = id;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getDiameter() {
+    public Integer getDiameter() {
         return diameter;
     }
 
-    public void setDiameter(int diameter) {
+    public void setDiameter(Integer diameter) {
         this.diameter = diameter;
     }
 
