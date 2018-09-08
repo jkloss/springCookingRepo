@@ -3,7 +3,8 @@ package com.cooking.cook.controllers;
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +27,13 @@ public class PizzaController {
     }
 
     @PostMapping("/addPizza")
-    public String submit(@Valid @ModelAttribute("pizza") Pizza pizza, ModelMap model) {
-        model.addAttribute("id", pizza.getId());
-        model.addAttribute("name", pizza.getName());
-        model.addAttribute("price", pizza.getPrice());
-        model.addAttribute("diameter", pizza.getDiameter());
-        pizzaService.createPizza(pizza);
+    public String submit(@Valid @ModelAttribute("pizza") Pizza newPizza, Model model,
+                         BindingResult result) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+        model.addAttribute("pizza", new Pizza());
+        pizzaService.createPizza(newPizza);
         return "pizzaView";
     }
     
