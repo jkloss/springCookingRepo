@@ -3,7 +3,6 @@ package com.cooking.cook.model;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @EnableTransactionManagement
@@ -11,16 +10,13 @@ import javax.validation.constraints.NotBlank;
 public class Pizza {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @NotBlank
     @Column(name = "PRICE")
     private Double price;
-    @NotBlank
     @Column(name = "DIAMETER")
     private Integer diameter;
-    @NotBlank
     @Column(name = "NAME")
     private String name;
 

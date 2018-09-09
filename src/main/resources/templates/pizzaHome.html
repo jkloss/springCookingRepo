@@ -1,17 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ejnwknfkwj</title>
+    <title>Add your pizza</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>PizzaForm</h1>
-<form action="#" th:action="@{/pizzaHome.html}" th:object="${pizza}" method="post">
-    <p>ID: <input type="text" th:field="*{id}" /></p>
+<h1>Fill up credentials</h1>
+<form action="#" th:action="@{/pizza}" th:object="${pizza}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Price: <input type="text" th:field="*{price}" /></p>
     <p>Diameter: <input type="text" th:field="*{diameter}" /></p>
-    <input type="submit" value="Click here">
+    <input type="submit" value="ADD NEW PIZZA">
 </form>
 </body>
 </html>
