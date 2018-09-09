@@ -26,6 +26,9 @@ public class PizzaRestController {
         return pizzaService.getPizzaWithGivenName(name);
     }
 
-
+    @GetMapping("/pizza/{number}")
+    public List<Pizza> getPizzaGreaterThanGivenNumber(@PathVariable(value = "number") String number) {
+        return pizzaService.getPizzaWhichIsGreaterThanGivenNumber(Integer.parseInt(number));
+    }
 
 }

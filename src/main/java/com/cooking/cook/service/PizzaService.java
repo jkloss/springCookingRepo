@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Component
 public class PizzaService {
 
@@ -25,4 +27,11 @@ public class PizzaService {
     public Pizza getPizzaWithGivenName(String name) {
         return pizzaRepository.findAllByNameEquals(name);
     }
+
+    public List<Pizza> getPizzaWhichIsGreaterThanGivenNumber(Integer number) {
+        return pizzaRepository.findAll().stream()
+                .filter(pizza -> pizza.getDiameter() >= number)
+                .collect(toList());
+    }
+
 }
