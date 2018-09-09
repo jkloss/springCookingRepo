@@ -21,4 +21,8 @@ public class PizzaService {
     public void createPizza(Pizza pizza) {
         pizzaRepository.save(pizza);
     }
+
+    public Pizza getPizzaWithGivenName(String name) {
+        return pizzaRepository.findAllByNameEquals(name);
+    }
 }

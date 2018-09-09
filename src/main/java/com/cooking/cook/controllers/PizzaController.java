@@ -33,5 +33,4 @@ public class PizzaController {
         pizzaService.createPizza(newPizza);
         return "pizzaView";
     }
-    
 }

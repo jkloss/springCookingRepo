@@ -62,7 +62,6 @@ public class Pizza {
         this.name = name;
     }
 
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Pizza{");
