@@ -1,4 +1,4 @@
-package com.cooking.cook.rest;
+package com.cooking.cook.controllers;
 
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
