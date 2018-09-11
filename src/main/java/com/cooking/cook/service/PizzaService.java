@@ -34,4 +34,8 @@ public class PizzaService {
                 .collect(toList());
     }
 
+    public void deleteRecord(Long id) {
+        pizzaRepository.deleteById(id);
+    }
+
 }

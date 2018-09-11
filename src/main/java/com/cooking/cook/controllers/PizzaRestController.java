@@ -2,10 +2,7 @@ package com.cooking.cook.controllers;
 
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,11 @@ public class PizzaRestController {
     @GetMapping("/pizza/dimensions")
     public List<Pizza> getPizzaGreaterThanGivenNumber(@RequestParam(value = "number") Integer number) {
         return pizzaService.getPizzaWhichIsGreaterThanGivenNumber(number);
+    }
+
+    @RequestMapping("pizza/delete")
+    public void deletePizza(@RequestParam(value = "id") Long id) {
+        pizzaService.deleteRecord(id);
     }
 
 }
