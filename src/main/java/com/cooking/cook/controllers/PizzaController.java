@@ -33,4 +33,9 @@ public class PizzaController {
         pizzaService.createPizza(newPizza);
         return "pizzaView";
     }
+
+    @GetMapping("/")
+    public ModelAndView welcomePageView() {
+        return new ModelAndView("welcomeView");
+    }
 }
