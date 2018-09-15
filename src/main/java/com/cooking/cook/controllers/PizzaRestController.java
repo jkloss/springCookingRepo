@@ -37,6 +37,11 @@ public class PizzaRestController {
 
     @GetMapping("/pizza/avg")
     public double getPizzaAvg() {
-        return pizzaService.getPizzaAvg();
+        return pizzaService.getPizzaPriceAvg();
+    }
+
+    @GetMapping("/pizza/sum")
+    public double getPizzaPriceSum() {
+        return pizzaService.getPizzaPriceSum();
     }
 }

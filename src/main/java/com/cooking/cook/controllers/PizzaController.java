@@ -27,7 +27,6 @@ public class PizzaController {
 
     @PostMapping("/pizza")
     public String submit(@Valid @ModelAttribute(value = "pizza") Pizza newPizza, ModelMap model) {
-        model.addAttribute("createdBy", newPizza.getCreatedBy());
         model.addAttribute("name", newPizza.getName());
         model.addAttribute("price", newPizza.getPrice());
         model.addAttribute("diameter", newPizza.getDiameter());

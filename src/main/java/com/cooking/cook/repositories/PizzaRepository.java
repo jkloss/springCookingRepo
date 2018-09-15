@@ -11,4 +11,6 @@ public interface PizzaRepository extends JpaRepository<Pizza, Long> {
     Pizza findAllByNameEquals(String name);
     @Query("SELECT AVG(p.price) FROM Pizza p")
     double getPizzaPriceAvg();
+    @Query("select sum(p.price) from Pizza p")
+    double getPizzaPriceSum();
 }
