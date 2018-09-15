@@ -34,4 +34,9 @@ public class PizzaRestController {
         pizzaService.deleteRecord(id);
     }
 
+
+    @GetMapping("/pizza/avg")
+    public double getPizzaAvg() {
+        return pizzaService.getPizzaAvg();
+    }
 }

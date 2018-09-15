@@ -38,4 +38,8 @@ public class PizzaService {
         pizzaRepository.deleteById(id);
     }
 
+    public double getPizzaAvg() {
+        return pizzaRepository.getPizzaPriceAvg();
+    }
+
 }
