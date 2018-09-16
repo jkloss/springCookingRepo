@@ -5,11 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>You've add new one successfully!</h1>
+<h1>You've added new one successfully!</h1>
 <p>Your choice:</p>
 <p th:text="'name: ' + ${pizza.name}" />
 <p th:text="'price: ' + ${pizza.price}" />
 <p th:text="'diameter: ' + ${pizza.diameter}" />
-<a href="/pizza">Add another pizza</a>
+<form action="/pizza">
+    <input type="submit" value="Add Another Pizza">
+</form>
+<form action="/pizza/all">
+    <input type="submit" value="See all pizza">
+</form>
 </body>
 </html>
