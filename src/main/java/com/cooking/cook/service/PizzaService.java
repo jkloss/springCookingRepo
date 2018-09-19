@@ -50,4 +50,9 @@ public class PizzaService {
         return pizzaRepository.findByNameStartingWith(beginning);
     }
 
+    public boolean checkIfPizzaExists(String name) {
+        return pizzaRepository.findAll().stream()
+                .anyMatch(p -> p.getName().equals(name));
+    }
+
 }

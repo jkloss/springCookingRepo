@@ -30,7 +30,11 @@ public class PizzaController {
         model.addAttribute("name", newPizza.getName());
         model.addAttribute("price", newPizza.getPrice());
         model.addAttribute("diameter", newPizza.getDiameter());
-        pizzaService.createPizza(newPizza);
+        if (!pizzaService.checkIfPizzaExists(newPizza.getName())) {
+            pizzaService.createPizza(newPizza);
+        } else {
+            throw new RuntimeException("Pizza already exists! You can't add pizza with the same name");
+        }
         return "pizzaView";
     }
 
