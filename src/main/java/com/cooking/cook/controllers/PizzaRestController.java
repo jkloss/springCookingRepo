@@ -44,4 +44,10 @@ public class PizzaRestController {
     public double getPizzaPriceSum() {
         return pizzaService.getPizzaPriceSum();
     }
+
+    @GetMapping("/pizza/startsWith")
+    public List<Pizza> findPizzaStartingWith(@RequestParam(value = "beginning") String beginning) {
+        return pizzaService.findPizzaStratingWith(beginning);
+    }
+
 }

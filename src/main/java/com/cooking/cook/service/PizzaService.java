@@ -46,4 +46,8 @@ public class PizzaService {
         return pizzaRepository.getPizzaPriceSum();
     }
 
+    public List<Pizza> findPizzaStratingWith(String beginning) {
+        return pizzaRepository.findByNameStartingWith(beginning);
+    }
+
 }
