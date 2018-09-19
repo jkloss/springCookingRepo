@@ -5,13 +5,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @EnableJpaAuditing
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
@@ -32,12 +35,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("jan.kowalski")
-                .password("bla")
-                .roles("ADMIN")
-                .build();
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User
+        .withUsername("jan")
+        .password(encoder().encode("bla"))
+        .roles("USER").build());
+        manager.createUser(User
+        .withUsername("admin")
+        .password(encoder().encode("admin2"))
+        .roles("ADMIN").build());
+        return manager;
+    }
 
-        return new InMemoryUserDetailsManager(user);
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 }
