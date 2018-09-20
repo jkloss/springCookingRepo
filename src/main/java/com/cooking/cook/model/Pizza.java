@@ -5,10 +5,14 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -89,5 +93,22 @@ public class Pizza {
         sb.append(", createdBy='").append(createdBy).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pizza)) return false;
+        Pizza pizza = (Pizza) o;
+        return Objects.equals(getId(), pizza.getId()) &&
+                Objects.equals(getPrice(), pizza.getPrice()) &&
+                Objects.equals(getDiameter(), pizza.getDiameter()) &&
+                Objects.equals(getName(), pizza.getName()) &&
+                Objects.equals(getCreatedBy(), pizza.getCreatedBy());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getPrice(), getDiameter(), getName(), getCreatedBy());
     }
 }
