@@ -1,7 +1,6 @@
 package com.cooking.cook.model;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -9,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
@@ -22,13 +19,14 @@ public class Pizza {
     @GeneratedValue
     private Long id;
     @NotNull
-    @Range(max = 150)
+    @Max(value = 150)
     private Double price;
     @NotNull
     @Min(value = 10)
     private Integer diameter;
     @NotBlank
     @Length(max = 256)
+    @Pattern(regexp = "^[A-Za-z]+$")
     private String name;
     @CreatedBy
     private String createdBy;
