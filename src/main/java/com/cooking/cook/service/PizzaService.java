@@ -56,7 +56,7 @@ public class PizzaService {
                 .anyMatch(p -> p.getName().equals(name));
     }
 
-    public List<Pizza> sortPizza() {
+    public List<Pizza> sortPizzaThroughName() {
         return pizzaRepository.findAll().stream()
                 .sorted(Comparator.comparing(Pizza::getName))
                 .collect(toList());

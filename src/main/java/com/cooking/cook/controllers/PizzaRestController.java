@@ -51,7 +51,7 @@ public class PizzaRestController {
     }
 
     @GetMapping("/pizza/sort")
-    public List<Pizza> sortPizza() {
-        return pizzaService.sortPizza();
+    public List<Pizza> sortPizzaThroughName() {
+        return pizzaService.sortPizzaThroughName();
     }
 }
