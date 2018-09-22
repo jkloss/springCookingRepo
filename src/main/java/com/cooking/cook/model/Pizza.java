@@ -2,6 +2,7 @@ package com.cooking.cook.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -30,15 +32,18 @@ public class Pizza {
     private String name;
     @CreatedBy
     private String createdBy;
+    @CreatedDate
+    private LocalDateTime creationDate;
 
     public Pizza() {
     }
 
-    public Pizza(Double price, Integer diameter, String name, Long id) {
+    public Pizza(Double price, Integer diameter, String name, Long id, LocalDateTime creationDate) {
         this.price = price;
         this.diameter = diameter;
         this.name = name;
         this.id = id;
+        this.creationDate = creationDate;
     }
 
     public String getCreatedBy() {
@@ -81,6 +86,14 @@ public class Pizza {
         this.name = name;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Pizza{");
@@ -89,6 +102,7 @@ public class Pizza {
         sb.append(", diameter=").append(diameter);
         sb.append(", name='").append(name).append('\'');
         sb.append(", createdBy='").append(createdBy).append('\'');
+        sb.append(", creationDate=").append(creationDate);
         sb.append('}');
         return sb.toString();
     }
@@ -102,11 +116,12 @@ public class Pizza {
                 Objects.equals(getPrice(), pizza.getPrice()) &&
                 Objects.equals(getDiameter(), pizza.getDiameter()) &&
                 Objects.equals(getName(), pizza.getName()) &&
-                Objects.equals(getCreatedBy(), pizza.getCreatedBy());
+                Objects.equals(getCreatedBy(), pizza.getCreatedBy()) &&
+                Objects.equals(getCreationDate(), pizza.getCreationDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getPrice(), getDiameter(), getName(), getCreatedBy());
+        return Objects.hash(getId(), getPrice(), getDiameter(), getName(), getCreatedBy(), getCreationDate());
     }
 }
