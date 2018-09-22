@@ -4,6 +4,7 @@ import com.cooking.cook.model.Pizza;
 import com.cooking.cook.repositories.PizzaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -55,5 +56,9 @@ public class PizzaService {
                 .anyMatch(p -> p.getName().equals(name));
     }
 
-
+    public List<Pizza> sortPizza() {
+        return pizzaRepository.findAll().stream()
+                .sorted(Comparator.comparing(Pizza::getName))
+                .collect(toList());
+    }
 }

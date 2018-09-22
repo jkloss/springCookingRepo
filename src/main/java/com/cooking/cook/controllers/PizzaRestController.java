@@ -49,4 +49,9 @@ public class PizzaRestController {
     public List<Pizza> findPizzaStartingWith(@RequestParam(value = "beginning") String beginning) {
         return pizzaService.findPizzaStartingWith(beginning);
     }
+
+    @GetMapping("/pizza/sort")
+    public List<Pizza> sortPizza() {
+        return pizzaService.sortPizza();
+    }
 }
