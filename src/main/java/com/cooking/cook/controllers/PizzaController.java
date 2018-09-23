@@ -1,5 +1,6 @@
 package com.cooking.cook.controllers;
 
+import com.cooking.cook.exceptions.MoreThanOnePizzaException;
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class PizzaController {
         if (!pizzaService.checkIfPizzaExists(newPizza.getName())) {
             pizzaService.createPizza(newPizza);
         } else {
-            throw new RuntimeException("Pizza already exists! You can't add pizza with the same name");
+            throw new MoreThanOnePizzaException();
         }
         return "pizzaView";
     }
