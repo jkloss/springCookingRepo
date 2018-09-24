@@ -4,6 +4,7 @@ import com.cooking.cook.exceptions.IsNotAdminException;
 import com.cooking.cook.exceptions.MoreThanOnePizzaException;
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.service.PizzaService;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -30,12 +30,12 @@ public class PizzaController {
 
     @PostMapping("/pizza")
     public String submit(@Valid @ModelAttribute(value = "pizza") Pizza newPizza, ModelMap model,
-                         HttpServletRequest request) {
+                         SecurityContextHolderAwareRequestWrapper wrapper) {
         model.addAttribute("name", newPizza.getName());
         model.addAttribute("price", newPizza.getPrice());
         model.addAttribute("diameter", newPizza.getDiameter());
         if (!pizzaService.checkIfPizzaExists(newPizza.getName())) {
-            if (request.isUserInRole("ADMIN")) {
+            if (wrapper.isUserInRole("ADMIN")) {
                 pizzaService.createPizza(newPizza);
             } else {
                 throw new IsNotAdminException();
