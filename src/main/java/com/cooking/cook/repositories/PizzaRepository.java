@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface PizzaRepository extends JpaRepository<Pizza, Long> {
     List<Pizza> findAll();
-    Pizza findAllByNameEquals(String name);
     @Query("SELECT AVG(p.price) FROM Pizza p")
     double getPizzaPriceAvg();
     @Query("select sum(p.price) from Pizza p")

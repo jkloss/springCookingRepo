@@ -21,11 +21,6 @@ public class PizzaRestController {
         return pizzaService.getPizzaList();
     }
 
-    @GetMapping("/pizza/{name}")
-    public Pizza getPizzaWithGivenName(@PathVariable(value = "name") String name) {
-        return pizzaService.getPizzaWithGivenName(name);
-    }
-
     @GetMapping("/pizza/dimensions")
     public List<Pizza> getPizzaGreaterThanGivenNumber(@RequestParam(value = "number") Integer number) {
         return pizzaService.getPizzaWhichIsGreaterThanGivenNumber(number);
@@ -47,8 +42,8 @@ public class PizzaRestController {
         return pizzaService.getPizzaPriceSum();
     }
 
-    @GetMapping("/pizza/startsWith")
-    public List<Pizza> findPizzaStartingWith(@RequestParam(value = "beginning") String beginning) {
+    @GetMapping("/pizza/startsWith/{beginning}")
+    public List<Pizza> findPizzaStartingWith(@PathVariable(value = "beginning") String beginning) {
         return pizzaService.findPizzaStartingWith(beginning);
     }
 

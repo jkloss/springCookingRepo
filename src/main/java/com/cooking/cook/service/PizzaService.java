@@ -25,10 +25,6 @@ public class PizzaService {
         pizzaRepository.save(pizza);
     }
 
-    public Pizza getPizzaWithGivenName(String name) {
-        return pizzaRepository.findAllByNameEquals(name);
-    }
-
     public List<Pizza> getPizzaWhichIsGreaterThanGivenNumber(Integer number) {
         return pizzaRepository.findAll().stream()
                 .filter(pizza -> pizza.getDiameter() >= number)
@@ -61,6 +57,4 @@ public class PizzaService {
                 .sorted(Comparator.comparing(Pizza::getName))
                 .collect(toList());
     }
-
-    
 }
