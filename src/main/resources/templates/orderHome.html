@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<h2>Menu:</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Diameter</th>
+        </tr>
+        <tr th:each="pizza: ${pizzaList}">
+            <td th:text="${pizza.name}"></td>
+            <td th:text="${pizza.price}"></td>
+            <td th:text="${pizza.diameter}"></td>
+        </tr>
+    </table>
+</body>
+</html>

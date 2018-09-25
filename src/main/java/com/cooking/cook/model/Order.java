@@ -27,6 +27,7 @@ public class Order {
     @Min(value = 1)
     private int amountOfOrders;
 
+
     public Order(@NotBlank @Length(max = 256) @Pattern(regexp = "^[A-Za-z]+$") String pizzaName,
                  @NotNull @Min(value = 1) int amountOfOrders) {
         this.pizzaName = pizzaName;
