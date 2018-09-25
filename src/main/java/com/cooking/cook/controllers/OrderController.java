@@ -29,7 +29,8 @@ public class OrderController {
     public String submitOrder(Model model, @ModelAttribute(value = "order") Order order) {
         model.addAttribute("pizzaName", order.getPizzaName());
         model.addAttribute("amount", order.getAmountOfOrders());
-        
+        orderService.makeNewOrder(order);
+       // orderService.changeAmountOfOrder(order.getPizzaName(), order.getAmountOfOrders());
         return "orderConfirmView";
     }
 }

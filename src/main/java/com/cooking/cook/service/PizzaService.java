@@ -2,14 +2,14 @@ package com.cooking.cook.service;
 
 import com.cooking.cook.model.Pizza;
 import com.cooking.cook.repositories.PizzaRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Service
+@Component
 public class PizzaService {
 
     private PizzaRepository pizzaRepository;

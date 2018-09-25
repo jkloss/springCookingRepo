@@ -2,9 +2,9 @@ package com.cooking.cook.service;
 
 import com.cooking.cook.model.Order;
 import com.cooking.cook.repositories.OrderRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class OrderService {
 
     private OrderRepository orderRepository;
@@ -15,4 +15,8 @@ public class OrderService {
     public void makeNewOrder(Order order) {
         orderRepository.save(order);
     }
+
+//    public void changeAmountOfOrder(String name, Integer numberOfOrders) {
+//        orderRepository.getUpdatedOrder(numberOfOrders, name);
+//    }
 }

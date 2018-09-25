@@ -3,10 +3,7 @@ package com.cooking.cook.model;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,20 +13,20 @@ import java.util.Objects;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Order {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     @Length(max = 256)
     @Pattern(regexp = "^[A-Za-z]+$")
+    @NotBlank
     private String pizzaName;
-    @NotNull
     @Min(value = 1)
-    private int amountOfOrders;
+    @NotNull
+    private Integer amountOfOrders;
 
 
-    public Order(@NotBlank @Length(max = 256) @Pattern(regexp = "^[A-Za-z]+$") String pizzaName,
-                 @NotNull @Min(value = 1) int amountOfOrders) {
+    public Order(String pizzaName, Integer amountOfOrders) {
         this.pizzaName = pizzaName;
         this.amountOfOrders = amountOfOrders;
     }
@@ -53,11 +50,11 @@ public class Order {
         this.pizzaName = pizzaName;
     }
 
-    public int getAmountOfOrders() {
+    public Integer getAmountOfOrders() {
         return amountOfOrders;
     }
 
-    public void setAmountOfOrders(int amountOfOrders) {
+    public void setAmountOfOrders(Integer amountOfOrders) {
         this.amountOfOrders = amountOfOrders;
     }
 
