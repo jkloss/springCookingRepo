@@ -112,16 +112,16 @@ public class Pizza {
         if (this == o) return true;
         if (!(o instanceof Pizza)) return false;
         Pizza pizza = (Pizza) o;
-        return Objects.equals(getId(), pizza.getId()) &&
-                Objects.equals(getPrice(), pizza.getPrice()) &&
-                Objects.equals(getDiameter(), pizza.getDiameter()) &&
-                Objects.equals(getName(), pizza.getName()) &&
-                Objects.equals(getCreatedBy(), pizza.getCreatedBy()) &&
-                Objects.equals(getCreationDate(), pizza.getCreationDate());
+        return Objects.equals(id, pizza.id) &&
+                Objects.equals(price, pizza.price) &&
+                Objects.equals(diameter, pizza.diameter) &&
+                Objects.equals(name, pizza.name) &&
+                Objects.equals(createdBy, pizza.createdBy) &&
+                Objects.equals(creationDate, pizza.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getPrice(), getDiameter(), getName(), getCreatedBy(), getCreationDate());
+        return Objects.hash(id, price, diameter, name, createdBy, creationDate);
     }
 }
