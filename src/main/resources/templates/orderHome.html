@@ -18,5 +18,12 @@
             <td th:text="${pizza.diameter}"></td>
         </tr>
     </table>
+
+<h2>Type your order:</h2>
+<form action="#" th:action="@{/order}" th:object="${order}" method="post">
+   Pizza name: <input type="text" value="Pizza name" th:field="${order.pizzaName}">
+   Amount: <input type="text" value="Amount of order" th:field="${order.amountOfOrders}">
+    <input type="submit" value="Confirm order">
+</form>
 </body>
 </html>
