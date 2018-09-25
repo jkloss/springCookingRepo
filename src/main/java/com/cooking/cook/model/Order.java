@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @Length(max = 256)
     @Pattern(regexp = "^[A-Za-z]+$")
