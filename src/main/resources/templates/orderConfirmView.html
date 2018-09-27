@@ -5,6 +5,8 @@
     <title>Order confirmation</title>
 </head>
 <body>
-<p>jbkewfbfkjwebf</p>
+<h2>Your order: </h2>
+<p th:text="'Amount: ' + ${pizzaOrderConfirm.amount}"/>
+<p th:text="'Pizza name: ' + ${pizzaOrderConfirm.orderName}"/>
 </body>
 </html>
