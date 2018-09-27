@@ -15,7 +15,7 @@ import java.util.Objects;
 public class PizzaOrder {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Length(max = 256)
     @Pattern(regexp = "^[A-Za-z]+$")

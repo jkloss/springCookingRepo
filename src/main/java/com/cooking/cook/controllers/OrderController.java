@@ -36,7 +36,7 @@ public class OrderController {
         model.addAttribute("pizzaName", pizzaOrder.getOrderName());
         model.addAttribute("amount", pizzaOrder.getAmount());
         orderService.makeNewOrder(pizzaOrder);
-       // orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+        orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
         return "orderConfirmView";
     }
 }
