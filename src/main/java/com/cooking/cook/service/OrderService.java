@@ -30,4 +30,9 @@ public class OrderService {
                 .sorted(Comparator.comparing(PizzaOrder::getOrderName))
                 .collect(toList());
     }
+
+    public boolean checkIfOrderExists(String name) {
+        return orderRepository.findAll().stream()
+                .anyMatch(o -> o.getOrderName().equals(name));
+    }
 }

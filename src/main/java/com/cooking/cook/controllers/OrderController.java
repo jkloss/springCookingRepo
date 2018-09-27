@@ -1,5 +1,6 @@
 package com.cooking.cook.controllers;
 
+import com.cooking.cook.exceptions.MultiplyOrderException;
 import com.cooking.cook.exceptions.NoPizzaInDatabaseException;
 import com.cooking.cook.model.PizzaOrder;
 import com.cooking.cook.service.OrderService;
@@ -38,8 +39,12 @@ public class OrderController {
         model.addAttribute("amount", pizzaOrder.getAmount());
 
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
-            orderService.makeNewOrder(pizzaOrder);
-            orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+            if (!orderService.checkIfOrderExists(pizzaOrder.getOrderName())){
+                orderService.makeNewOrder(pizzaOrder);
+                orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+            } else {
+                throw new MultiplyOrderException();
+            }
         } else {
             throw new NoPizzaInDatabaseException();
         }
