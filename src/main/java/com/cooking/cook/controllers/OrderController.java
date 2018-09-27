@@ -1,5 +1,6 @@
 package com.cooking.cook.controllers;
 
+import com.cooking.cook.exceptions.NoPizzaInDatabaseException;
 import com.cooking.cook.model.PizzaOrder;
 import com.cooking.cook.service.OrderService;
 import com.cooking.cook.service.PizzaService;
@@ -35,8 +36,14 @@ public class OrderController {
     public String submitOrder(Model model, @ModelAttribute(value = "pizzaOrderConfirm") PizzaOrder pizzaOrder) {
         model.addAttribute("pizzaName", pizzaOrder.getOrderName());
         model.addAttribute("amount", pizzaOrder.getAmount());
-        orderService.makeNewOrder(pizzaOrder);
-        orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+
+        if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
+            orderService.makeNewOrder(pizzaOrder);
+            orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+        } else {
+            throw new NoPizzaInDatabaseException();
+        }
+
         return "orderConfirmView";
     }
 }
