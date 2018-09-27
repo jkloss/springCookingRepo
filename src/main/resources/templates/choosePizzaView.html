@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose pizza</title>
+</head>
+<body>
+<form action="#" th:action="@{/orderPizza}" th:object="${pizzaOrderConfirm}" method="post">
+    Pizza name: <input type="text" value="Pizza name" th:field="*{orderName}">
+    Amount: <input type="text" value="Amount of order" th:field="*{amount}">
+    <input type="submit" value="Confirm order">
+</form>
+</body>
+</html>

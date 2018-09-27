@@ -1,14 +1,14 @@
 package com.cooking.cook.repositories;
 
-import com.cooking.cook.model.Order;
+import com.cooking.cook.model.PizzaOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findAll();
+public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
+    List<PizzaOrder> findAll();
    // @Modifying
-//    @Query(value = "update Order o set o.amountOfOrders = o.amountOfOrders + :number " +
+//    @Query(value = "update PizzaOrder o set o.amountOfOrders = o.amountOfOrders + :number " +
 //            "where o.pizzaName like :name")
-//    Order getUpdatedOrder(@Param("number") Integer number, @Param("name") String name);
+//    PizzaOrder getUpdatedOrder(@Param("number") Integer number, @Param("name") String name);
 }
