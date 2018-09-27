@@ -22,7 +22,7 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public String getPizzaListToChoose(Model model, @ModelAttribute(value = "pizzaOrder") PizzaOrder pizzaOrder) {
+    public String getPizzaListToChoose(Model model) {
         model.addAttribute("pizzaList", pizzaService.getPizzaList());
         return "orderHome";
     }
@@ -45,5 +45,11 @@ public class OrderController {
         }
 
         return "orderConfirmView";
+    }
+
+    @GetMapping("/allOrders")
+    public String getAllOrdersView(Model model) {
+        model.addAttribute("allOrderedPizza", orderService.getSortedPizzaOrderList());
+        return "allOrdersView";
     }
 }
