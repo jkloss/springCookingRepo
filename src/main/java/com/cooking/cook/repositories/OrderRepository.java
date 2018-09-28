@@ -18,5 +18,5 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Transactional
     @Modifying
     @Query("delete from PizzaOrder p where p.id = :id")
-    void deleteRecordInORderTable(@Param("id") Long id);
+    void deleteRecordInOrderTable(@Param("id") Long id);
 }

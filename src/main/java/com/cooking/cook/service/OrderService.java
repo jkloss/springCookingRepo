@@ -41,6 +41,6 @@ public class OrderService {
     }
 
     public void deleteRecordFromOrderTable(Long id) {
-        orderRepository.deleteRecordInORderTable(id);
+        orderRepository.deleteRecordInOrderTable(id);
     }
 }

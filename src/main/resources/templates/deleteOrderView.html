@@ -5,10 +5,20 @@
     <title>Delete order</title>
 </head>
 <body>
-<ul>
-    <li th:each="pizzaOrder">
-
-    </li>
-</ul>
+<table border="1">
+    <tr>
+        <th>Order name</th>
+        <th>Amount</th>
+    </tr>
+    <tr th:each="order: ${pizzaOrders}">
+        <td th:text="${order.orderName}"></td>
+        <td th:text="${order.amount}"></td>
+        <td>
+            <form action="#" th:action="@{'/deleteRecord/{id}'(id=${order.id})}" th:method="delete">
+                <input type="submit" name="delete" value="Done">
+            </form>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
