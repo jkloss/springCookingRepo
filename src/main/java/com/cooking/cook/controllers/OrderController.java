@@ -57,4 +57,9 @@ public class OrderController {
         model.addAttribute("allOrderedPizza", orderService.getSortedPizzaOrderList());
         return "allOrdersView";
     }
+
+    @GetMapping("/mainMenu")
+    public ModelAndView getMainMenu() {
+        return new ModelAndView("mainMenu");
+    }
 }
