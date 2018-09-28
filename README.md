@@ -13,4 +13,6 @@
 
 - delete existing pizza
 
+- place an order 
+
 and many others... :)
