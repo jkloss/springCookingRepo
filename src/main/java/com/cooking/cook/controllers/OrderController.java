@@ -17,6 +17,7 @@ public class OrderController {
 
     private OrderService orderService;
     private PizzaService pizzaService;
+
     public OrderController(OrderService orderService, PizzaService pizzaService) {
         this.orderService = orderService;
         this.pizzaService = pizzaService;
@@ -39,7 +40,7 @@ public class OrderController {
         model.addAttribute("amount", pizzaOrder.getAmount());
 
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
-            if (!orderService.checkIfOrderExists(pizzaOrder.getOrderName())){
+            if (!orderService.checkIfOrderExists(pizzaOrder.getOrderName())) {
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
             } else {
@@ -61,5 +62,11 @@ public class OrderController {
     @GetMapping("/mainMenu")
     public ModelAndView getMainMenu() {
         return new ModelAndView("mainMenu");
+    }
+
+    @GetMapping("/deleteDoneOrder")
+    public String getDeleteView(Model model) {
+        model.addAttribute("pizzaOrders", orderService.findAll());
+        return "deleteOrderView";
     }
 }

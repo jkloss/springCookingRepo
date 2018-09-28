@@ -35,4 +35,12 @@ public class OrderService {
         return orderRepository.findAll().stream()
                 .anyMatch(o -> o.getOrderName().equals(name));
     }
+
+    public List<PizzaOrder> findAll() {
+        return orderRepository.findAll();
+    }
+
+    public void deleteRecordFromOrderTable(Long id) {
+        orderRepository.deleteRecordInORderTable(id);
+    }
 }
