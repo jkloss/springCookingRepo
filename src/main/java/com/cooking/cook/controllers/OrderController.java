@@ -69,8 +69,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/deleteRecord/{id}")
-    public String deleteRecord(@ModelAttribute(value = "deletedRecord") PizzaOrder pizzaOrder,
-                               @PathVariable("id") Long id) {
+    public String deleteRecord(@PathVariable("id") Long id) {
         orderService.deleteRecordFromOrderTable(id);
         return "deleteConfirm";
     }
