@@ -57,11 +57,6 @@ public class OrderController {
         return "allOrdersView";
     }
 
-    @GetMapping("/mainMenu")
-    public ModelAndView getMainMenu() {
-        return new ModelAndView("mainMenu");
-    }
-
     @GetMapping("/deleteDoneOrder")
     public String getDeleteView(Model model) {
         model.addAttribute("pizzaOrders", orderService.findAll());
