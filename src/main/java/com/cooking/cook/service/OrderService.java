@@ -32,9 +32,10 @@ public class OrderService {
                 .collect(toList());
     }
 
-    public boolean checkIfOrderExistsForChosenUser(String name) {
+    public boolean checkIfOrderExistsForLoggedUser(String name, User user) {
         return orderRepository.findAll().stream()
-                .anyMatch(o -> o.getOrderName().equals(name));
+                .filter(o -> o.getOrderName().equals(name) && o.getOrderCreatedBy().equals(user.getUsername()))
+                .anyMatch(p -> p.getOrderName().equals(name));
     }
 
     public List<PizzaOrder> findAll() {

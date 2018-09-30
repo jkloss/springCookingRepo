@@ -35,14 +35,17 @@ public class OrderController {
     }
 
     @PostMapping("/orderPizza")
-    public String submitOrder(Model model, @ModelAttribute(value = "pizzaOrderConfirm") PizzaOrder pizzaOrder) {
+    public String submitOrder(Model model, @ModelAttribute(value = "pizzaOrderConfirm") PizzaOrder pizzaOrder,
+                              @AuthenticationPrincipal User user) {
         model.addAttribute("pizzaName", pizzaOrder.getOrderName());
         model.addAttribute("amount", pizzaOrder.getAmount());
 
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
-            if (!orderService.checkIfOrderExistsForChosenUser(pizzaOrder.getOrderName())) {
+            if (!orderService.checkIfOrderExistsForLoggedUser(pizzaOrder.getOrderName(), user)) {
+
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+
             } else {
                 throw new MultiplyOrderException();
             }
