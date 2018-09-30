@@ -3,9 +3,10 @@ package com.cooking.cook.controllers;
 import com.cooking.cook.exceptions.MultiplyOrderException;
 import com.cooking.cook.exceptions.NoPizzaInDatabaseException;
 import com.cooking.cook.model.PizzaOrder;
-import com.cooking.cook.security.UserAuditor;
 import com.cooking.cook.service.OrderService;
 import com.cooking.cook.service.PizzaService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,10 @@ public class OrderController {
 
     private OrderService orderService;
     private PizzaService pizzaService;
-    private UserAuditor userAuditor;
 
-    public OrderController(OrderService orderService, PizzaService pizzaService, UserAuditor userAuditor) {
+    public OrderController(OrderService orderService, PizzaService pizzaService) {
         this.orderService = orderService;
         this.pizzaService = pizzaService;
-        this.userAuditor = userAuditor;
     }
 
     @GetMapping("/order")
@@ -41,7 +40,7 @@ public class OrderController {
         model.addAttribute("amount", pizzaOrder.getAmount());
 
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
-            if (!orderService.checkIfOrderExists(pizzaOrder.getOrderName())) {
+            if (!orderService.checkIfOrderExistsForChosenUser(pizzaOrder.getOrderName())) {
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
             } else {
@@ -55,8 +54,8 @@ public class OrderController {
     }
 
     @GetMapping("/allOrdersPersonalized")
-    public String getAllOrdersView(Model model) {
-        model.addAttribute("personCreatingOrder", orderService.getOrderListByCreatedBy(userAuditor.getCurrentAuditor()));
+    public String getAllOrdersView(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("personCreatingOrder", orderService.getOrderListByCreatedBy(user));
         return "allOrdersPersonalizedView";
     }
 

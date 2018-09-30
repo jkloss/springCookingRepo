@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     List<PizzaOrder> findAll();
@@ -20,5 +19,4 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Modifying
     @Query("delete from PizzaOrder p where p.id = :id")
     void deleteRecordInOrderTable(@Param("id") Long id);
-    List<PizzaOrder> findAllByOrderCreatedBy(Optional<String> createdBy);
 }

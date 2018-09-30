@@ -2,11 +2,11 @@ package com.cooking.cook.service;
 
 import com.cooking.cook.model.PizzaOrder;
 import com.cooking.cook.repositories.OrderRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,7 +32,7 @@ public class OrderService {
                 .collect(toList());
     }
 
-    public boolean checkIfOrderExists(String name) {
+    public boolean checkIfOrderExistsForChosenUser(String name) {
         return orderRepository.findAll().stream()
                 .anyMatch(o -> o.getOrderName().equals(name));
     }
@@ -45,7 +45,9 @@ public class OrderService {
         orderRepository.deleteRecordInOrderTable(id);
     }
 
-    public List<PizzaOrder> getOrderListByCreatedBy(Optional<String> createdBy) {
-        return orderRepository.findAllByOrderCreatedBy(createdBy);
+    public List<PizzaOrder> getOrderListByCreatedBy(User user) {
+        return orderRepository.findAll().stream()
+                .filter(o -> o.getOrderCreatedBy().equals(user.getUsername()))
+                .collect(toList());
     }
 }
