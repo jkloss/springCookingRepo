@@ -13,6 +13,8 @@
 
 - delete existing pizza
 
-- place an order 
+- place an order as logged user
+
+- have different options depending on role you're logged in 
 
 and many others... :)
