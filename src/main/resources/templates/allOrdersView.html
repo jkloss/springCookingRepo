@@ -10,10 +10,12 @@
     <tr>
         <th>Ordered pizza</th>
         <th>Amount</th>
+        <th>Customer</th>
     </tr>
-    <tr th:each="orders: ${allOrderedPizza}">
-        <td th:text="${orders.orderName}"></td>
-        <td th:text="${orders.amount}"></td>
+    <tr th:each="order: ${allOrderedPizza}">
+        <td th:text="${order.orderName}"></td>
+        <td th:text="${order.amount}"></td>
+        <td th:text="${order.orderCreatedBy}"></td>
     </tr>
 </table>
 <form action="/mainMenu" method="get">

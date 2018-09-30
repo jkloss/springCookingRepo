@@ -9,10 +9,12 @@
     <tr>
         <th>Order name</th>
         <th>Amount</th>
+        <th>Customer</th>
     </tr>
     <tr th:each="order: ${pizzaOrders}">
         <td th:text="${order.orderName}"></td>
         <td th:text="${order.amount}"></td>
+        <td th:text="${order.orderCreatedBy}"></td>
         <td>
             <form action="#" th:action="@{'/deleteRecord/{id}'(id=${order.id})}" th:method="delete">
                 <input type="submit" name="delete" value="Done">
