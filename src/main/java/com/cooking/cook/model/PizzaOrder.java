@@ -28,7 +28,6 @@ public class PizzaOrder {
     @CreatedBy
     private String orderCreatedBy;
 
-
     public PizzaOrder(String orderName, Integer amount, String orderCreatedBy) {
         this.orderName = orderName;
         this.amount = amount;

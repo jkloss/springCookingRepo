@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -42,5 +43,9 @@ public class OrderService {
 
     public void deleteRecordFromOrderTable(Long id) {
         orderRepository.deleteRecordInOrderTable(id);
+    }
+
+    public List<PizzaOrder> getOrderListByCreatedBy(Optional<String> createdBy) {
+        return orderRepository.findAllByOrderCreatedBy(createdBy);
     }
 }
