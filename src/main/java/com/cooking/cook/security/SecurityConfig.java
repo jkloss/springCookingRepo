@@ -20,6 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers( "/pizza").hasRole("ADMIN")
+                .antMatchers( "/order").hasAnyRole("ADMIN", "USER")
+                .antMatchers( "/orderPizza").hasAnyRole("ADMIN", "USER")
+                .antMatchers( "/allOrdersPersonalized").hasRole("USER")
+                .antMatchers( "/allOrdersToDisplay").hasAnyRole("WORKER", "ADMIN")
+                .antMatchers( "/deleteDoneOrder").hasAnyRole("ADMIN", "WORKER")
+                .antMatchers( "/deleteRecord/{id}").hasAnyRole("ADMIN", "WORKER")
+                .antMatchers( "/mainMenu").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
