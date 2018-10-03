@@ -51,4 +51,8 @@ public class OrderService {
                 .filter(o -> o.getOrderCreatedBy().equals(user.getUsername()))
                 .collect(toList());
     }
+
+    public Double getTotalPrice(String name) {
+        return orderRepository.getTotalOrderPrice(name);
+    }
 }

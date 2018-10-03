@@ -43,6 +43,7 @@ public class OrderController {
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
             if (!orderService.checkIfOrderExistsForLoggedUser(pizzaOrder.getOrderName(), user)) {
 
+                pizzaOrder.setPizzaPrice(pizzaService.getPizzaPrice(pizzaOrder.getOrderName()));
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
 
@@ -59,6 +60,7 @@ public class OrderController {
     @GetMapping("/allOrdersPersonalized")
     public String getAllOrdersView(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("personCreatingOrder", orderService.getOrderListByCreatedBy(user));
+        model.addAttribute("totalPrice", orderService.getTotalPrice(user.getUsername()));
         return "allOrdersPersonalizedView";
     }
 

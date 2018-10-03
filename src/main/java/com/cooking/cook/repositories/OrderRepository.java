@@ -19,4 +19,6 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Modifying
     @Query("delete from PizzaOrder p where p.id = :id")
     void deleteRecordInOrderTable(@Param("id") Long id);
+    @Query("select sum(p.pizzaPrice) from PizzaOrder p where p.orderCreatedBy = :name")
+    Double getTotalOrderPrice(@Param("name") String name);
 }

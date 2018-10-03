@@ -9,12 +9,15 @@
     <tr>
         <th>Ordered pizza</th>
         <th>Amount</th>
+        <th>Price</th>
     </tr>
     <tr th:each="order: ${personCreatingOrder}">
         <td th:text="${order.orderName}"></td>
         <td th:text="${order.amount}"></td>
+        <td th:text="${order.pizzaPrice}"></td>
     </tr>
 </table>
+<h1 th:text="'Total cost: ' + ${totalPrice}"></h1>
 <form action="/mainMenu" method="get">
     <input type="submit" value="return to main menu">
 </form>

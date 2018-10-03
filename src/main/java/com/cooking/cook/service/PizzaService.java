@@ -57,4 +57,8 @@ public class PizzaService {
                 .sorted(Comparator.comparing(Pizza::getName))
                 .collect(toList());
     }
+
+    public Double getPizzaPrice(String name) {
+        return pizzaRepository.getPizzaPrice(name);
+    }
 }

@@ -25,16 +25,27 @@ public class PizzaOrder {
     @Min(value = 1)
     @NotNull
     private Integer amount;
+    @NotNull
+    private Double pizzaPrice;
     @CreatedBy
     private String orderCreatedBy;
 
-    public PizzaOrder(String orderName, Integer amount, String orderCreatedBy) {
+    public PizzaOrder(String orderName, Integer amount, Double pizzaPrice, String orderCreatedBy) {
         this.orderName = orderName;
         this.amount = amount;
+        this.pizzaPrice = pizzaPrice;
         this.orderCreatedBy = orderCreatedBy;
     }
 
     public PizzaOrder() {
+    }
+
+    public Double getPizzaPrice() {
+        return pizzaPrice;
+    }
+
+    public void setPizzaPrice(Double pizzaPrice) {
+        this.pizzaPrice = pizzaPrice;
     }
 
     public Long getId() {
@@ -75,6 +86,7 @@ public class PizzaOrder {
         sb.append("id=").append(id);
         sb.append(", orderName='").append(orderName).append('\'');
         sb.append(", amount=").append(amount);
+        sb.append(", pizzaPrice=").append(pizzaPrice);
         sb.append(", orderCreatedBy='").append(orderCreatedBy).append('\'');
         sb.append('}');
         return sb.toString();
@@ -88,11 +100,12 @@ public class PizzaOrder {
         return Objects.equals(id, that.id) &&
                 Objects.equals(orderName, that.orderName) &&
                 Objects.equals(amount, that.amount) &&
+                Objects.equals(pizzaPrice, that.pizzaPrice) &&
                 Objects.equals(orderCreatedBy, that.orderCreatedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderName, amount, orderCreatedBy);
+        return Objects.hash(id, orderName, amount, pizzaPrice, orderCreatedBy);
     }
 }
