@@ -52,7 +52,14 @@ public class OrderService {
                 .collect(toList());
     }
 
-    public Double getTotalPrice(String name) {
-        return orderRepository.getTotalOrderPrice(name);
+    public Double getTotalPriceForOnePizza(String name) {
+        return orderRepository.findAll().stream()
+                .filter(p -> p.getOrderCreatedBy().equals(name))
+                .map(p -> {
+                    double total;
+                    total = p.getPizzaPrice() * p.getAmount();
+                    return total;
+                })
+                .mapToDouble(p -> p).sum();
     }
 }

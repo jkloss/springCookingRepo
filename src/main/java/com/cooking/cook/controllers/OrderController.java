@@ -60,7 +60,7 @@ public class OrderController {
     @GetMapping("/allOrdersPersonalized")
     public String getAllOrdersView(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("personCreatingOrder", orderService.getOrderListByCreatedBy(user));
-        model.addAttribute("totalPrice", orderService.getTotalPrice(user.getUsername()));
+        model.addAttribute("totalPrice", orderService.getTotalPriceForOnePizza(user.getUsername()));
         return "allOrdersPersonalizedView";
     }
 
