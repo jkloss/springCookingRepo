@@ -93,10 +93,11 @@ public class OrderController {
         return new ModelAndView("updateChosenOrder");
     }
 
-    @PostMapping("/doUpdate")
-    public String updatePizzaOrder(Model model, @RequestParam("editedName") String name,
-                                   @RequestParam("amount") Integer amount) {
-
+    @PostMapping(value = "/doUpdate")
+    public String updatePizzaOrder(@RequestParam(value = "editedName", required = false) String name,
+                                   @RequestParam(value = "amount", required = false) Integer amount,
+                                   @RequestParam("id") Long id, @AuthenticationPrincipal User user) {
+        orderService.editOrder(name, amount, user.getUsername(), id);
         return "updateConfirm";
     }
 }

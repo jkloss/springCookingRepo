@@ -19,4 +19,11 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Modifying
     @Query("delete from PizzaOrder p where p.id = :id")
     void deleteRecordInOrderTable(@Param("id") Long id);
+    @Transactional
+    @Modifying
+    @Query("update PizzaOrder p set p.orderName = :newName, p.amount = :newAmount where p.orderCreatedBy = :creator and p.id = :id")
+    void editPizzaOrder(@Param("newName") String newName, @Param("newAmount") Integer newAmount,
+                        @Param("creator") String creator, @Param("id") Long id);
+//    @Query("select p.id from PizzaOrder p where p.orderCreatedBy = :creator and p.orderName = :name")
+//    Long getIdToEdit(@Param("creator") String creator, @Param("name") String name);
 }

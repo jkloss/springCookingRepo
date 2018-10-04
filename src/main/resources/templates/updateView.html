@@ -13,8 +13,13 @@
     <tr th:each="order: ${ordersToUpdate}">
         <td th:text="${order.orderName}"></td>
         <td>
+            <form action="#" method="get" th:action="@{/doUpdate(id=${order.id})}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
             <form action="/doUpdate" method="get">
-                <input type="submit" name="update" value="Edit">
+                <input type="submit" value="Later feature">
             </form>
         </td>
     </tr>

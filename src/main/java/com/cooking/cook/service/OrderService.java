@@ -62,4 +62,8 @@ public class OrderService {
                 })
                 .mapToDouble(p -> p).sum();
     }
+
+    public void editOrder(String newName, Integer newAmount, String creator, Long id) {
+        orderRepository.editPizzaOrder(newName, newAmount, creator, id);
+    }
 }
