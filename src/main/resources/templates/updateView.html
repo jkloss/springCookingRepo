@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit order</title>
+</head>
+<body>
+<h2>Choose order you want to edit</h2>
+<table border="1">
+    <tr>
+        <th>Ordered pizza</th>
+    </tr>
+    <tr th:each="order: ${ordersToUpdate}">
+        <td th:text="${order.orderName}"></td>
+        <td>
+            <form action="/doUpdate" method="get">
+                <input type="submit" name="update" value="Edit">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

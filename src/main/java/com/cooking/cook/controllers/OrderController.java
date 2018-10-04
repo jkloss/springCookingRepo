@@ -81,4 +81,22 @@ public class OrderController {
         orderService.deleteRecordFromOrderTable(id);
         return "deleteConfirm";
     }
+
+    @GetMapping("/update")
+    public String getUpdateView(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("ordersToUpdate", orderService.getOrderListByCreatedBy(user));
+        return "updateView";
+    }
+
+    @GetMapping("/doUpdate")
+    public ModelAndView getNewCredentialView() {
+        return new ModelAndView("updateChosenOrder");
+    }
+
+    @PostMapping("/doUpdate")
+    public String updatePizzaOrder(Model model, @RequestParam("editedName") String name,
+                                   @RequestParam("amount") Integer amount) {
+
+        return "updateConfirm";
+    }
 }

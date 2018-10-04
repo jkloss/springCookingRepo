@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>updating</title>
+</head>
+<body>
+<form action="#" th:action="@{/doUpdate}" method="post">
+    <input type="text" th:name="editedName" th:placeholder="EditedName">
+    <input type="text" th:name="amount" th:placeholder="Amount">
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
