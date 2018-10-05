@@ -98,7 +98,12 @@ public class OrderController {
     public String updatePizzaOrder(@RequestParam(value = "editedName") String name,
                                    @RequestParam(value = "amount") Integer amount,
                                    @RequestParam Long id, @AuthenticationPrincipal User user) {
-        orderService.editOrder(name, amount, user.getUsername(), id);
+        if (pizzaService.checkIfPizzaExists(name)) {
+            orderService.editOrder(name, amount, user.getUsername(), id);
+            
+        } else {
+            throw new NoPizzaInDatabaseException();
+        }
         return "updateConfirm";
     }
 }
