@@ -97,7 +97,7 @@ public class OrderController {
     @PostMapping(value = "/doUpdate")
     public String updatePizzaOrder(@RequestParam(value = "editedName", required = false) String name,
                                    @RequestParam(value = "amount", required = false) Integer amount,
-                                   @RequestParam("id") Long id, @AuthenticationPrincipal User user) {
+                                   @RequestParam Long id, @AuthenticationPrincipal User user) {
         orderService.editOrder(name, amount, user.getUsername(), id);
         return "updateConfirm";
     }
