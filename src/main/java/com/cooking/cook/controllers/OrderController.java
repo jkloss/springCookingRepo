@@ -89,8 +89,9 @@ public class OrderController {
     }
 
     @GetMapping("/doUpdate")
-    public ModelAndView getNewCredentialView() {
-        return new ModelAndView("updateChosenOrder");
+    public String getNewCredentialView(@RequestParam Long id, Model model) {
+        model.addAttribute("id", id);
+        return "updateChosenOrder";
     }
 
     @PostMapping(value = "/doUpdate")

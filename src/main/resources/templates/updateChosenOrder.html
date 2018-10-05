@@ -5,8 +5,9 @@
     <title>updating</title>
 </head>
 <body>
-<form action="#" th:action="@{/doUpdate}" method="post">
-    <input type="text" th:name="editedName" th:placeholder="Name">
+<form action="#" th:action="@{/doUpdate}" th:method="post">
+    <input type="hidden" th:value="${id}">
+    <input type="text" name="editedName" th:value="" th:placeholder="Name">
     <input type="text" th:name="amount" th:placeholder="Amount">
     <input type="submit" value="submit">
 </form>

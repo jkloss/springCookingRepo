@@ -13,8 +13,9 @@
     <tr th:each="order: ${ordersToUpdate}">
         <td th:text="${order.orderName}"></td>
         <td>
-            <form action="#" method="get" th:action="@{/doUpdate(id=${order.id})}">
-                <input type="submit" value="Edit">
+            <form action="#" data-th-action="@{/doUpdate}">
+                <input type="hidden" name="id" th:value="${order.id}">
+                <button type="submit">Submit</button>
             </form>
         </td>
         <td>
