@@ -5,10 +5,10 @@
     <title>updating</title>
 </head>
 <body>
-<form action="#" th:action="@{/doUpdate}" th:method="post">
+<form action="#" th:action="@{/doUpdate}" th:method="put">
     <input type="hidden" name="id" th:value="${id}">
-    <input type="text" th:name="editedName">
-    <input type="text" th:name="amount">
+    <input type="text" th:name="editedName" th:placeholder="New + ' ' + name">
+    <input type="text" th:name="amount" th:placeholder="Amount">
     <button type="submit">Submit</button>
 </form>
 </body>
