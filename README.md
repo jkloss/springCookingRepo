@@ -17,4 +17,6 @@
 
 - have different options depending on role you're logged in 
 
+- edit your order
+
 and many others... :)

@@ -34,7 +34,7 @@ public class OrderService {
 
     public boolean checkIfOrderExistsForLoggedUser(String name, User user) {
         return orderRepository.findAll().stream()
-                .filter(o -> o.getOrderName().equals(name) && o.getOrderCreatedBy().equals(user.getUsername()))
+                .filter(o -> o.getOrderCreatedBy().equals(user.getUsername()))
                 .anyMatch(p -> p.getOrderName().equals(name));
     }
 
