@@ -43,7 +43,7 @@ public class OrderController {
         if (pizzaService.checkIfPizzaExists(pizzaOrder.getOrderName())) {
             if (!orderService.checkIfOrderExistsForLoggedUser(pizzaOrder.getOrderName(), user)) {
 
-                pizzaOrder.setPizzaPrice(pizzaService.getPizzaPrice(pizzaOrder.getOrderName()));
+                pizzaOrder.setPizzaPrice(pizzaService.getPizzaPriceWithRepository(pizzaOrder.getOrderName()));
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
 
@@ -89,7 +89,7 @@ public class OrderController {
     }
 
     @GetMapping("/doUpdate")
-    public String getNewCredentialView(@RequestParam Long id, Model model) {
+    public String getNewCredentialsView(@RequestParam Long id, Model model) {
         model.addAttribute("id", id);
         return "updateChosenOrder";
     }
@@ -101,7 +101,10 @@ public class OrderController {
         if (pizzaService.checkIfPizzaExists(name)) {
             if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
                 orderService.editOrder(name, amount, user.getUsername(), id);
-                orderService.editPrice(name, pizzaService.getPizzaPrice(name), user.getUsername());
+                orderService.editPrice(name, pizzaService.getPizzaPriceWithRepository(name), user.getUsername());
+            } else if (orderService.checkIfOrderExistsForLoggedUser(name, user) &&
+                    name.equals(orderService.getOrderNameById(id))){
+                orderService.editAmountOnly(amount, id);
             } else {
                 throw new MultiplyOrderException();
             }

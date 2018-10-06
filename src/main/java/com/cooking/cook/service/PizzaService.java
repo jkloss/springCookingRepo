@@ -58,7 +58,7 @@ public class PizzaService {
                 .collect(toList());
     }
 
-    public Double getPizzaPrice(String name) {
-        return pizzaRepository.getPizzaPrice(name);
+    public Double getPizzaPriceWithRepository(String name) {
+        return pizzaRepository.getPizzaPriceFromRepository(name);
     }
 }

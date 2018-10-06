@@ -70,4 +70,12 @@ public class OrderService {
     public void editPrice(String name, Double newPrice, String creator) {
         orderRepository.updatePriceInOrders(name, newPrice, creator);
     }
+
+    public String getOrderNameById(Long id) {
+        return orderRepository.getOrderNameById(id);
+    }
+
+    public void editAmountOnly(Integer newAmount, Long id) {
+        orderRepository.updateAmountOnly(newAmount, id);
+    }
 }

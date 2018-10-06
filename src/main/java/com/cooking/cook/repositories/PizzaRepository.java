@@ -15,5 +15,5 @@ public interface PizzaRepository extends JpaRepository<Pizza, Long> {
     double getPizzaPriceSum();
     List<Pizza> findByNameStartingWith(String beginning);
     @Query("select p.price from Pizza p where p.name = :name")
-    Double getPizzaPrice(@Param("name") String name);
+    Double getPizzaPriceFromRepository(@Param("name") String name);
 }
