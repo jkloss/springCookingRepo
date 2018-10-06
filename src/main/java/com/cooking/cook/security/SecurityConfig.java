@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/allOrdersToDisplay").hasAnyRole("WORKER", "ADMIN")
                 .antMatchers( "/deleteDoneOrder").hasAnyRole("ADMIN", "WORKER")
                 .antMatchers( "/deleteRecord/{id}").hasAnyRole("ADMIN", "WORKER")
+                .antMatchers("/update").hasRole("USER")
+                .antMatchers("/doUpdate").hasRole("USER")
                 .antMatchers( "/mainMenu").permitAll()
                 .anyRequest().authenticated()
                 .and()
