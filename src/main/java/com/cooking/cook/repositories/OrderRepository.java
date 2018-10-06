@@ -27,6 +27,8 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
                         @Param("creator") String creator, @Param("id") Long id);
     @Transactional
     @Modifying
-    @Query("update PizzaOrder p set p.pizzaPrice = :newPrice where p.orderName = :name")
-    void updatePriceInOrders(@Param("name") String name, @Param("newPrice") Double newPrice);
+    @Query("update PizzaOrder p set p.pizzaPrice = :newPrice where p.orderName = :name and " +
+            "p.orderCreatedBy = :creator")
+    void updatePriceInOrders(@Param("name") String name, @Param("newPrice") Double newPrice,
+                             @Param("creator") String creator);
 }

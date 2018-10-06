@@ -67,7 +67,7 @@ public class OrderService {
         orderRepository.editPizzaOrder(newName, newAmount, creator, id);
     }
 
-    public void editPrice(String name, Double newPirce) {
-        orderRepository.updatePriceInOrders(name, newPirce);
+    public void editPrice(String name, Double newPrice, String creator) {
+        orderRepository.updatePriceInOrders(name, newPrice, creator);
     }
 }

@@ -99,8 +99,12 @@ public class OrderController {
                                    @RequestParam(value = "amount") Integer amount,
                                    @RequestParam Long id, @AuthenticationPrincipal User user) {
         if (pizzaService.checkIfPizzaExists(name)) {
-            orderService.editOrder(name, amount, user.getUsername(), id);
-            
+            if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
+                orderService.editOrder(name, amount, user.getUsername(), id);
+                orderService.editPrice(name, pizzaService.getPizzaPrice(name), user.getUsername());
+            } else {
+                throw new MultiplyOrderException();
+            }
         } else {
             throw new NoPizzaInDatabaseException();
         }
