@@ -21,4 +21,9 @@ public class UsersController {
 
         return new ModelAndView("mainMenuUser");
     }
+
+    @GetMapping("/loginNewCustomer")
+    public ModelAndView getLoginView() {
+        return new ModelAndView("customLoginForm");
+    }
 }

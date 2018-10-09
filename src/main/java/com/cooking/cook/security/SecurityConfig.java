@@ -33,10 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/loginNewCustomer")
+                .permitAll()
                 .and()
-                .httpBasic()
-                .and()
-                .csrf().disable();
+                .httpBasic();
 
     }
 
