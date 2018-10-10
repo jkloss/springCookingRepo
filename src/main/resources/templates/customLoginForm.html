@@ -7,9 +7,9 @@
 <body>
 <h1>Welcome in our restaurant!</h1>
 <h2>Fill up credentials:</h2>
-<form name="f" th:action="@{/login}" method="post">
+<form name="f" th:action="@{/loginNewOne}" method="post">
     <input type="text" name="username" placeholder="Your name"><br><br>
-    <input type="password" name="password" placeholder="Password(only for this order)"><br><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
     <button type="submit">Start your order</button>
 </form>
 </body>
