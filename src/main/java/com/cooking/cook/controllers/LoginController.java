@@ -32,8 +32,10 @@ public class LoginController {
         return new ModelAndView("errorLogin");
     }
 
-    @PostMapping("/loginNewOne")
-    public void authNewUser(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
+    @PostMapping("/login")
+    public void authNewUser(@RequestParam("username") String username,
+                            @RequestParam("password") String password,
+                            HttpServletRequest request) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(token);
         SecurityContext securityContext = SecurityContextHolder.getContext();
