@@ -29,16 +29,13 @@ public class PizzaOrder {
     private Double pizzaPrice;
     @CreatedBy
     private String orderCreatedBy;
-    @Length(max = 10)
-    private String secretCode;
 
     public PizzaOrder(String orderName, Integer amount, Double pizzaPrice,
-                      String orderCreatedBy, String secretCode) {
+                      String orderCreatedBy) {
         this.orderName = orderName;
         this.amount = amount;
         this.pizzaPrice = pizzaPrice;
         this.orderCreatedBy = orderCreatedBy;
-        this.secretCode = secretCode;
     }
 
     public PizzaOrder() {
@@ -84,14 +81,6 @@ public class PizzaOrder {
         this.orderCreatedBy = orderCreatedBy;
     }
 
-    public String getSecretCode() {
-        return secretCode;
-    }
-
-    public void setSecretCode(String secretCode) {
-        this.secretCode = secretCode;
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("PizzaOrder{");
@@ -100,7 +89,6 @@ public class PizzaOrder {
         sb.append(", amount=").append(amount);
         sb.append(", pizzaPrice=").append(pizzaPrice);
         sb.append(", orderCreatedBy='").append(orderCreatedBy).append('\'');
-        sb.append(", secretCode='").append(secretCode).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -114,12 +102,11 @@ public class PizzaOrder {
                 Objects.equals(orderName, that.orderName) &&
                 Objects.equals(amount, that.amount) &&
                 Objects.equals(pizzaPrice, that.pizzaPrice) &&
-                Objects.equals(orderCreatedBy, that.orderCreatedBy) &&
-                Objects.equals(secretCode, that.secretCode);
+                Objects.equals(orderCreatedBy, that.orderCreatedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderName, amount, pizzaPrice, orderCreatedBy, secretCode);
+        return Objects.hash(id, orderName, amount, pizzaPrice, orderCreatedBy);
     }
 }

@@ -67,7 +67,6 @@ public class OrderController {
     @GetMapping("/allOrdersToDisplay")
     public String getAllOrdersToDisplay(Model model) {
         model.addAttribute("allOrderedPizza", orderService.getSortedPizzaOrderList());
-      //  model.addAttribute("secretCustomerCode", );
         return "allOrdersView";
     }
 
