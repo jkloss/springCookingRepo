@@ -2,6 +2,7 @@ package com.cooking.cook.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -29,13 +31,16 @@ public class PizzaOrder {
     private Double pizzaPrice;
     @CreatedBy
     private String orderCreatedBy;
+    @CreatedDate
+    private LocalDateTime creationDate;
 
     public PizzaOrder(String orderName, Integer amount,
-                      Double pizzaPrice, String orderCreatedBy) {
+                      Double pizzaPrice, String orderCreatedBy, LocalDateTime creationDate) {
         this.orderName = orderName;
         this.amount = amount;
         this.pizzaPrice = pizzaPrice;
         this.orderCreatedBy = orderCreatedBy;
+        this.creationDate = creationDate;
     }
 
     public PizzaOrder() {
@@ -81,6 +86,14 @@ public class PizzaOrder {
         this.orderCreatedBy = orderCreatedBy;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("PizzaOrder{");
@@ -89,6 +102,7 @@ public class PizzaOrder {
         sb.append(", amount=").append(amount);
         sb.append(", pizzaPrice=").append(pizzaPrice);
         sb.append(", orderCreatedBy='").append(orderCreatedBy).append('\'');
+        sb.append(", creationDate=").append(creationDate);
         sb.append('}');
         return sb.toString();
     }
@@ -102,11 +116,12 @@ public class PizzaOrder {
                 Objects.equals(orderName, that.orderName) &&
                 Objects.equals(amount, that.amount) &&
                 Objects.equals(pizzaPrice, that.pizzaPrice) &&
-                Objects.equals(orderCreatedBy, that.orderCreatedBy);
+                Objects.equals(orderCreatedBy, that.orderCreatedBy) &&
+                Objects.equals(creationDate, that.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderName, amount, pizzaPrice, orderCreatedBy);
+        return Objects.hash(id, orderName, amount, pizzaPrice, orderCreatedBy, creationDate);
     }
 }
