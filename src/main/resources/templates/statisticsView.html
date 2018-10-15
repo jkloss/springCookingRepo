@@ -11,10 +11,10 @@
         <th>Amount</th>
         <th>Customer</th>
     </tr>
-    <tr th:each="order: ${allOrderedPizza}">
-        <td th:text="${order.orderName}"></td>
-        <td th:text="${order.amount}"></td>
-        <td th:text="${order.orderCreatedBy}"></td>
+    <tr th:each="stat: ${}">
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
+        <td th:text="${}"></td>
     </tr>
 </table>
 </body>

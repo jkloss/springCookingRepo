@@ -5,6 +5,7 @@ import com.cooking.cook.exceptions.NoPizzaInDatabaseException;
 import com.cooking.cook.model.PizzaOrder;
 import com.cooking.cook.service.OrderService;
 import com.cooking.cook.service.PizzaService;
+import com.cooking.cook.service.StatisticsService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,12 @@ public class OrderController {
 
     private OrderService orderService;
     private PizzaService pizzaService;
+    private StatisticsService statisticsService;
 
-    public OrderController(OrderService orderService, PizzaService pizzaService) {
+    public OrderController(OrderService orderService, PizzaService pizzaService, StatisticsService statisticsService) {
         this.orderService = orderService;
         this.pizzaService = pizzaService;
+        this.statisticsService = statisticsService;
     }
 
     @GetMapping("/order")
@@ -46,6 +49,7 @@ public class OrderController {
                 pizzaOrder.setPizzaPrice(pizzaService.getPizzaPriceWithRepository(pizzaOrder.getOrderName()));
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+                statisticsService.increaseNumberOfTotalOrders();
 
             } else {
                 throw new MultiplyOrderException();

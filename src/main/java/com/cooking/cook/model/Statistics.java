@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -12,11 +13,13 @@ public class Statistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private Integer totalNumberOfOrders;
+    @NotNull
     private Integer ordersInPeriodOfTime;
-    private Integer favouritePizza;
+    private String favouritePizza;
 
-    public Statistics(Integer totalNumberOfOrders, Integer ordersInPeriodOfTime, Integer favouritePizza) {
+    public Statistics(Integer totalNumberOfOrders, Integer ordersInPeriodOfTime, String favouritePizza) {
         this.totalNumberOfOrders = totalNumberOfOrders;
         this.ordersInPeriodOfTime = ordersInPeriodOfTime;
         this.favouritePizza = favouritePizza;
@@ -49,11 +52,11 @@ public class Statistics {
         this.ordersInPeriodOfTime = ordersInPeriodOfTime;
     }
 
-    public Integer getFavouritePizza() {
+    public String getFavouritePizza() {
         return favouritePizza;
     }
 
-    public void setFavouritePizza(Integer favouritePizza) {
+    public void setFavouritePizza(String favouritePizza) {
         this.favouritePizza = favouritePizza;
     }
 
