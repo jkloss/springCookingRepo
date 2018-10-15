@@ -12,8 +12,8 @@ public class StatisticsService {
         this.statisticsRepository = statisticsRepository;
     }
 
-    public void increaseNumberOfTotalOrders() {
-        statisticsRepository.updateTotalNumberOfOrders();
+    public void increaseNumberOfTotalOrders(Integer amount) {
+        statisticsRepository.updateTotalNumberOfOrders(amount);
     }
 
     public void createInitialRecord(Statistics statistics) {
