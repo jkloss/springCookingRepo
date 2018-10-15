@@ -22,8 +22,8 @@ public class OrderService {
         orderRepository.save(pizzaOrder);
     }
 
-    public void changeAmountOfOrder(String name, Integer numberOfOrders) {
-        orderRepository.getUpdatedOrder(numberOfOrders, name);
+    public void changeAmountOfOrder(String name, Integer numberOfOrders, String user) {
+        orderRepository.getUpdatedOrder(numberOfOrders, name, user);
     }
 
     public List<PizzaOrder> getSortedPizzaOrderList() {

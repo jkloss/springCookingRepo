@@ -48,7 +48,7 @@ public class OrderController {
 
                 pizzaOrder.setPizzaPrice(pizzaService.getPizzaPriceWithRepository(pizzaOrder.getOrderName()));
                 orderService.makeNewOrder(pizzaOrder);
-                orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount());
+                orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount(), user.getUsername());
                 statisticsService.increaseNumberOfTotalOrders(pizzaOrder.getAmount());
 
             } else {

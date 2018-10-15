@@ -13,8 +13,8 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     List<PizzaOrder> findAll();
     @Transactional
     @Modifying
-    @Query("update PizzaOrder p set p.amount = :number where p.orderName = :name")
-    void getUpdatedOrder(@Param("number") Integer number, @Param("name") String name);
+    @Query("update PizzaOrder p set p.amount = :number where p.orderName = :name and p.orderCreatedBy = :user")
+    void getUpdatedOrder(@Param("number") Integer number, @Param("name") String name, @Param("user") String user);
     @Transactional
     @Modifying
     @Query("delete from PizzaOrder p where p.id = :id")
