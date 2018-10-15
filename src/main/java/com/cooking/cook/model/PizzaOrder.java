@@ -30,8 +30,8 @@ public class PizzaOrder {
     @CreatedBy
     private String orderCreatedBy;
 
-    public PizzaOrder(String orderName, Integer amount, Double pizzaPrice,
-                      String orderCreatedBy) {
+    public PizzaOrder(String orderName, Integer amount,
+                      Double pizzaPrice, String orderCreatedBy) {
         this.orderName = orderName;
         this.amount = amount;
         this.pizzaPrice = pizzaPrice;
