@@ -19,4 +19,18 @@ public class StatisticsService {
     public void createInitialRecord(Statistics statistics) {
         statisticsRepository.save(statistics);
     }
+
+    private Integer getCurrentTotalNumberOfOrders() {
+        return statisticsRepository.getAllByTotalNumberOfOrders();
+    }
+
+    public void updateStatsWithEditing(Integer oldAmount, Integer currentAmount) {
+        if (oldAmount - currentAmount > 0) {
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithPositiveDisparity(getCurrentTotalNumberOfOrders(),
+                    oldAmount - currentAmount);
+        } else {
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithNegativeDisparity(getCurrentTotalNumberOfOrders(),
+                    Math.abs(oldAmount - currentAmount));
+        }
+    }
 }

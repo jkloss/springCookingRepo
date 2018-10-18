@@ -20,7 +20,6 @@ public class StatisticsController {
 
     @GetMapping("/createRecord")
     public String getStatistics(Model model) {
-
         return "startCollectingStats";
     }
 

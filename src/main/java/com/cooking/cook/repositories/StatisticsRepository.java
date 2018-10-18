@@ -12,4 +12,17 @@ public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Modifying
     @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders + :amount where s.id = 1")
     void updateTotalNumberOfOrders(@Param("amount") Integer amount);
+    @Query("select s.totalNumberOfOrders from Statistics s")
+    Integer getAllByTotalNumberOfOrders();
+    @Transactional
+    @Modifying
+    @Query("update Statistics s set s.totalNumberOfOrders = :previous - :current")
+    void updateTotalNumberOfOrdersByEditingWithPositiveDisparity(@Param("previous") Integer previous,
+                                                                 @Param("current") Integer current);
+    @Transactional
+    @Modifying
+    @Query("update Statistics s set s.totalNumberOfOrders = :previous + :current")
+    void updateTotalNumberOfOrdersByEditingWithNegativeDisparity(@Param("previous") Integer previous,
+                                                                 @Param("current") Integer current);
+
 }
