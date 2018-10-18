@@ -16,13 +16,11 @@ public class Statistics {
     @NotNull
     private Integer totalNumberOfOrders;
     @NotNull
-    private Integer ordersInPeriodOfTime;
-    private String favouritePizza;
+    private Integer ordersInMonth;
 
-    public Statistics(Integer totalNumberOfOrders, Integer ordersInPeriodOfTime, String favouritePizza) {
+    public Statistics(Integer totalNumberOfOrders, Integer ordersInMonth) {
         this.totalNumberOfOrders = totalNumberOfOrders;
-        this.ordersInPeriodOfTime = ordersInPeriodOfTime;
-        this.favouritePizza = favouritePizza;
+        this.ordersInMonth = ordersInMonth;
     }
 
     public Statistics() {
@@ -44,20 +42,12 @@ public class Statistics {
         this.totalNumberOfOrders = totalNumberOfOrders;
     }
 
-    public Integer getOrdersInPeriodOfTime() {
-        return ordersInPeriodOfTime;
+    public Integer getOrdersInMonth() {
+        return ordersInMonth;
     }
 
-    public void setOrdersInPeriodOfTime(Integer ordersInPeriodOfTime) {
-        this.ordersInPeriodOfTime = ordersInPeriodOfTime;
-    }
-
-    public String getFavouritePizza() {
-        return favouritePizza;
-    }
-
-    public void setFavouritePizza(String favouritePizza) {
-        this.favouritePizza = favouritePizza;
+    public void setOrdersInMonth(Integer ordersInMonth) {
+        this.ordersInMonth = ordersInMonth;
     }
 
     @Override
@@ -65,8 +55,7 @@ public class Statistics {
         final StringBuffer sb = new StringBuffer("Statistics{");
         sb.append("id=").append(id);
         sb.append(", totalNumberOfOrders=").append(totalNumberOfOrders);
-        sb.append(", ordersInPeriodOfTime=").append(ordersInPeriodOfTime);
-        sb.append(", favouritePizza=").append(favouritePizza);
+        sb.append(", ordersInMonth=").append(ordersInMonth);
         sb.append('}');
         return sb.toString();
     }
@@ -78,12 +67,11 @@ public class Statistics {
         Statistics that = (Statistics) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(totalNumberOfOrders, that.totalNumberOfOrders) &&
-                Objects.equals(ordersInPeriodOfTime, that.ordersInPeriodOfTime) &&
-                Objects.equals(favouritePizza, that.favouritePizza);
+                Objects.equals(ordersInMonth, that.ordersInMonth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalNumberOfOrders, ordersInPeriodOfTime, favouritePizza);
+        return Objects.hash(id, totalNumberOfOrders, ordersInMonth);
     }
 }

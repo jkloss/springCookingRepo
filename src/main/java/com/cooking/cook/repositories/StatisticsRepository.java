@@ -13,7 +13,7 @@ public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders + :amount where s.id = 1")
     void updateTotalNumberOfOrders(@Param("amount") Integer amount);
     @Query("select s.totalNumberOfOrders from Statistics s")
-    Integer getAllByTotalNumberOfOrders();
+    Integer getPreviousTotalNumberOfOrders();
     @Transactional
     @Modifying
     @Query("update Statistics s set s.totalNumberOfOrders = :previous - :current")
@@ -24,5 +24,4 @@ public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Query("update Statistics s set s.totalNumberOfOrders = :previous + :current")
     void updateTotalNumberOfOrdersByEditingWithNegativeDisparity(@Param("previous") Integer previous,
                                                                  @Param("current") Integer current);
-
 }

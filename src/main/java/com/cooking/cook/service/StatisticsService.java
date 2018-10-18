@@ -20,16 +20,16 @@ public class StatisticsService {
         statisticsRepository.save(statistics);
     }
 
-    private Integer getCurrentTotalNumberOfOrders() {
-        return statisticsRepository.getAllByTotalNumberOfOrders();
+    private Integer getOldTotalNumberOfOrders() {
+        return statisticsRepository.getPreviousTotalNumberOfOrders();
     }
 
-    public void updateStatsWithEditing(Integer oldAmount, Integer currentAmount) {
+    public void updateTotalNumberOfOrdersWithEditing(Integer oldAmount, Integer currentAmount) {
         if (oldAmount - currentAmount > 0) {
-            statisticsRepository.updateTotalNumberOfOrdersByEditingWithPositiveDisparity(getCurrentTotalNumberOfOrders(),
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithPositiveDisparity(getOldTotalNumberOfOrders(),
                     oldAmount - currentAmount);
         } else {
-            statisticsRepository.updateTotalNumberOfOrdersByEditingWithNegativeDisparity(getCurrentTotalNumberOfOrders(),
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithNegativeDisparity(getOldTotalNumberOfOrders(),
                     Math.abs(oldAmount - currentAmount));
         }
     }
