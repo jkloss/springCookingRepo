@@ -1,6 +1,5 @@
 package com.cooking.cook.service;
 
-import com.cooking.cook.model.Statistics;
 import com.cooking.cook.repositories.StatisticsRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,8 @@ public class StatisticsService {
         this.statisticsRepository = statisticsRepository;
     }
 
-    public void increaseNumberOfTotalOrders(Integer amount) {
-        statisticsRepository.updateTotalNumberOfOrders(amount);
-    }
-
-    public void createInitialRecord(Statistics statistics) {
-        statisticsRepository.save(statistics);
+    public void increaseNumberOfTotalOrders(Integer amount, Long id) {
+        statisticsRepository.updateTotalNumberOfOrders(amount, id);
     }
 
     private Integer getOldTotalNumberOfOrders() {

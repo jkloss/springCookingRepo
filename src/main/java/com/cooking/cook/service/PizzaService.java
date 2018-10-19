@@ -61,4 +61,8 @@ public class PizzaService {
     public Double getPizzaPriceWithRepository(String name) {
         return pizzaRepository.getPizzaPriceFromRepository(name);
     }
+
+    public Long getIdByGivenName(String name) {
+        return pizzaRepository.getIdByName(name);
+    }
 }

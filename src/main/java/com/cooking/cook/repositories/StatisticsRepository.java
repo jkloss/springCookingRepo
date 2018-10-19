@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Transactional
     @Modifying
-    @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders + :amount where s.id = 1")
-    void updateTotalNumberOfOrders(@Param("amount") Integer amount);
+    @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders + :amount where s.id = :id")
+    void updateTotalNumberOfOrders(@Param("amount") Integer amount, @Param("id") Long id);
     @Query("select s.totalNumberOfOrders from Statistics s")
     Integer getPreviousTotalNumberOfOrders();
     @Transactional

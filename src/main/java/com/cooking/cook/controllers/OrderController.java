@@ -49,7 +49,8 @@ public class OrderController {
                 pizzaOrder.setPizzaPrice(pizzaService.getPizzaPriceWithRepository(pizzaOrder.getOrderName()));
                 orderService.makeNewOrder(pizzaOrder);
                 orderService.changeAmountOfOrder(pizzaOrder.getOrderName(), pizzaOrder.getAmount(), user.getUsername());
-                statisticsService.increaseNumberOfTotalOrders(pizzaOrder.getAmount());
+                statisticsService.increaseNumberOfTotalOrders(pizzaOrder.getAmount(),
+                        pizzaService.getIdByGivenName(pizzaOrder.getOrderName()));
 
             } else {
                 throw new MultiplyOrderException();
@@ -104,14 +105,14 @@ public class OrderController {
                                    @RequestParam Long id, @AuthenticationPrincipal User user) {
         if (pizzaService.checkIfPizzaExists(name)) {
             if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
-                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
-                        user.getUsername()), amount);
+//                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
+//                        user.getUsername()), amount);
                 orderService.editOrder(name, amount, user.getUsername(), id);
                 orderService.editPrice(name, pizzaService.getPizzaPriceWithRepository(name), user.getUsername());
             } else if (orderService.checkIfOrderExistsForLoggedUser(name, user) &&
                     name.equals(orderService.getOrderNameById(id))){
-                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
-                        user.getUsername()), amount);
+//                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
+//                        user.getUsername()), amount);
                 orderService.editAmountOnly(amount, id);
             } else {
                 throw new MultiplyOrderException();

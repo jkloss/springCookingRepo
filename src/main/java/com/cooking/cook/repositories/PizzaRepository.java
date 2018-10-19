@@ -16,4 +16,6 @@ public interface PizzaRepository extends JpaRepository<Pizza, Long> {
     List<Pizza> findByNameStartingWith(String beginning);
     @Query("select p.price from Pizza p where p.name = :name")
     Double getPizzaPriceFromRepository(@Param("name") String name);
+    @Query("select p.id from Pizza p where p.name = :givenName")
+    Long getIdByName(@Param("givenName") String name);
 }
