@@ -1,5 +1,7 @@
 package com.cooking.cook.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -15,6 +17,7 @@ public class Statistics {
     @NotNull
     private Integer ordersInMonth;
     @OneToOne(mappedBy = "statistics")
+    @JsonBackReference
     private Pizza pizza;
 
     public Statistics(Integer totalNumberOfOrders, Integer ordersInMonth) {

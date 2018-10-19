@@ -1,5 +1,6 @@
 package com.cooking.cook.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -32,7 +33,8 @@ public class Pizza {
     @CreatedDate
     private LocalDateTime creationDate;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pizza_statistic")
+    @JoinColumn(name = "statistics_id")
+    @JsonManagedReference
     private Statistics statistics;
 
     public Pizza() {
