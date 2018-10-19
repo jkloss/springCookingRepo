@@ -1,9 +1,6 @@
 package com.cooking.cook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -17,6 +14,8 @@ public class Statistics {
     private Integer totalNumberOfOrders;
     @NotNull
     private Integer ordersInMonth;
+    @OneToOne(mappedBy = "statistics")
+    private Pizza pizza;
 
     public Statistics(Integer totalNumberOfOrders, Integer ordersInMonth) {
         this.totalNumberOfOrders = totalNumberOfOrders;
@@ -50,12 +49,21 @@ public class Statistics {
         this.ordersInMonth = ordersInMonth;
     }
 
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Statistics{");
         sb.append("id=").append(id);
         sb.append(", totalNumberOfOrders=").append(totalNumberOfOrders);
         sb.append(", ordersInMonth=").append(ordersInMonth);
+        sb.append(", pizza=").append(pizza);
         sb.append('}');
         return sb.toString();
     }
@@ -67,11 +75,12 @@ public class Statistics {
         Statistics that = (Statistics) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(totalNumberOfOrders, that.totalNumberOfOrders) &&
-                Objects.equals(ordersInMonth, that.ordersInMonth);
+                Objects.equals(ordersInMonth, that.ordersInMonth) &&
+                Objects.equals(pizza, that.pizza);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalNumberOfOrders, ordersInMonth);
+        return Objects.hash(id, totalNumberOfOrders, ordersInMonth, pizza);
     }
 }

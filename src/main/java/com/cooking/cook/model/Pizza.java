@@ -31,6 +31,9 @@ public class Pizza {
     private String createdBy;
     @CreatedDate
     private LocalDateTime creationDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pizza_statistic")
+    private Statistics statistics;
 
     public Pizza() {
     }
@@ -91,6 +94,14 @@ public class Pizza {
         this.creationDate = creationDate;
     }
 
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Pizza{");
@@ -100,6 +111,7 @@ public class Pizza {
         sb.append(", name='").append(name).append('\'');
         sb.append(", createdBy='").append(createdBy).append('\'');
         sb.append(", creationDate=").append(creationDate);
+        sb.append(", statistics=").append(statistics);
         sb.append('}');
         return sb.toString();
     }
@@ -114,11 +126,12 @@ public class Pizza {
                 Objects.equals(diameter, pizza.diameter) &&
                 Objects.equals(name, pizza.name) &&
                 Objects.equals(createdBy, pizza.createdBy) &&
-                Objects.equals(creationDate, pizza.creationDate);
+                Objects.equals(creationDate, pizza.creationDate) &&
+                Objects.equals(statistics, pizza.statistics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, diameter, name, createdBy, creationDate);
+        return Objects.hash(id, price, diameter, name, createdBy, creationDate, statistics);
     }
 }

@@ -3,6 +3,7 @@ package com.cooking.cook.controllers;
 import com.cooking.cook.exceptions.IsNotAdminException;
 import com.cooking.cook.exceptions.MoreThanOnePizzaException;
 import com.cooking.cook.model.Pizza;
+import com.cooking.cook.model.Statistics;
 import com.cooking.cook.service.PizzaService;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,7 @@ public class PizzaController {
         model.addAttribute("diameter", newPizza.getDiameter());
         if (!pizzaService.checkIfPizzaExists(newPizza.getName())) {
             if (wrapper.isUserInRole("ADMIN")) {
+                newPizza.setStatistics(new Statistics(0, 0));
                 pizzaService.createPizza(newPizza);
             } else {
                 throw new IsNotAdminException();
