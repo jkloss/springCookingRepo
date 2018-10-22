@@ -23,8 +23,8 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Modifying
     @Query("update PizzaOrder p set p.orderName = :newName, p.amount = :newAmount where " +
             "p.orderCreatedBy = :creator and p.id = :id")
-    void editPizzaOrder(@Param("newName") String newName, @Param("newAmount") Integer newAmount,
-                        @Param("creator") String creator, @Param("id") Long id);
+    void editPizzaOrderWithoutPrice(@Param("newName") String newName, @Param("newAmount") Integer newAmount,
+                                    @Param("creator") String creator, @Param("id") Long id);
     @Transactional
     @Modifying
     @Query("update PizzaOrder p set p.pizzaPrice = :newPrice where p.orderName = :name and " +
@@ -37,6 +37,6 @@ public interface OrderRepository extends JpaRepository<PizzaOrder, Long> {
     @Modifying
     @Query("update PizzaOrder p set p.amount = :newAmount where p.id = :id")
     void updateAmountOnly(@Param("newAmount") Integer newAmount, @Param("id") Long id);
-    @Query("select p.amount from PizzaOrder p where p.orderName = :name and p.orderCreatedBy = :creator")
-    Integer getNotEditedAmountOfOrder(@Param("name") String name, @Param("creator") String creator);
+    @Query("select p.amount from PizzaOrder p where p.id = :id")
+    Integer getNotEditedAmountOfOrder(@Param("id") Long id);
 }

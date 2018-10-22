@@ -43,4 +43,9 @@ public class LoginController {
         HttpSession session = request.getSession(true);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
     }
+
+    @GetMapping("/")
+    public ModelAndView welcomePageView() {
+        return new ModelAndView("welcomeView");
+    }
 }

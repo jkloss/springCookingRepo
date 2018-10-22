@@ -46,9 +46,4 @@ public class PizzaController {
         }
         return "pizzaView";
     }
-
-    @GetMapping("/")
-    public ModelAndView welcomePageView() {
-        return new ModelAndView("welcomeView");
-    }
 }

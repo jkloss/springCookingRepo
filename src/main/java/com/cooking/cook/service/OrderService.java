@@ -63,8 +63,8 @@ public class OrderService {
                 .mapToDouble(p -> p).sum();
     }
 
-    public void editOrder(String newName, Integer newAmount, String creator, Long id) {
-        orderRepository.editPizzaOrder(newName, newAmount, creator, id);
+    public void editOrderWithoutPrice(String newName, Integer newAmount, String creator, Long id) {
+        orderRepository.editPizzaOrderWithoutPrice(newName, newAmount, creator, id);
     }
 
     public void editPrice(String name, Double newPrice, String creator) {
@@ -79,8 +79,8 @@ public class OrderService {
         orderRepository.updateAmountOnly(newAmount, id);
     }
 
-    public Integer getNotEditedAmountOfOrder(String name, String creator) {
-        return orderRepository.getNotEditedAmountOfOrder(name, creator);
+    public Integer getNotEditedAmountOfOrder(Long id) {
+        return orderRepository.getNotEditedAmountOfOrder(id);
     }
 
 }
