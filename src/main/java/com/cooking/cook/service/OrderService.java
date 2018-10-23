@@ -79,8 +79,8 @@ public class OrderService {
         orderRepository.updateAmountOnly(newAmount, id);
     }
 
-    public Integer getNotEditedAmountOfOrder(Long id) {
-        return orderRepository.getNotEditedAmountOfOrder(id);
+    public Integer getNotEditedAmountOfOrder(String name, String creator) {
+        return orderRepository.getNotEditedAmountOfOrder(name, creator);
     }
 
 }

@@ -110,7 +110,8 @@ public class OrderController {
                 orderService.editPrice(name, pizzaService.getPizzaPriceWithRepository(name), user.getUsername());
             } else if (orderService.checkIfOrderExistsForLoggedUser(name, user) &&
                     name.equals(orderService.getOrderNameById(id))){
-                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(id), amount, name);
+                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
+                        user.getUsername()), amount, name);
                 orderService.editAmountOnly(amount, id);
             } else {
                 throw new MultiplyOrderException();
