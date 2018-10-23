@@ -105,12 +105,13 @@ public class OrderController {
                                    @RequestParam Long id, @AuthenticationPrincipal User user) {
         if (pizzaService.checkIfPizzaExists(name)) {
             if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
-            //    statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(id), amount, name);
+//                statisticsService.increaseNumberOfTotalOrders(amount, pizzaService.getIdByGivenName(name));
+//                statisticsService.subtractOldValueOfAmount(amount, orderService.getOrderNameById(id));
                 orderService.editOrderWithoutPrice(name, amount, user.getUsername(), id);
                 orderService.editPrice(name, pizzaService.getPizzaPriceWithRepository(name), user.getUsername());
             } else if (orderService.checkIfOrderExistsForLoggedUser(name, user) &&
                     name.equals(orderService.getOrderNameById(id))){
-                statisticsService.updateTotalNumberOfOrdersWithEditing(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
+                statisticsService.updateTotalNumberOfOrdersWithEditingTheSameName(orderService.getNotEditedAmountOfOrder(orderService.getOrderNameById(id),
                         user.getUsername()), amount, name);
                 orderService.editAmountOnly(amount, id);
             } else {

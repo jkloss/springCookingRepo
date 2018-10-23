@@ -17,17 +17,16 @@ public class StatisticsService {
         statisticsRepository.updateTotalNumberOfOrders(amount, id);
     }
 
-    private Integer getOldTotalNumberOfOrders(Long id) {
-        return statisticsRepository.getPreviousTotalNumberOfOrders(id);
-    }
-
-    public void updateTotalNumberOfOrdersWithEditing(Integer oldAmount, Integer currentAmount, String name) {
+    public void updateTotalNumberOfOrdersWithEditingTheSameName(Integer oldAmount, Integer currentAmount, String name) {
         if (oldAmount - currentAmount > 0) {
-            statisticsRepository.updateTotalNumberOfOrdersByEditingWithPositiveDisparity(getOldTotalNumberOfOrders(pizzaService.getIdByGivenName(name)),
-                    oldAmount - currentAmount, pizzaService.getIdByGivenName(name));
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithPositiveDisparity(oldAmount - currentAmount, pizzaService.getIdByGivenName(name));
         } else {
-            statisticsRepository.updateTotalNumberOfOrdersByEditingWithNegativeDisparity(getOldTotalNumberOfOrders(pizzaService.getIdByGivenName(name)),
+            statisticsRepository.updateTotalNumberOfOrdersByEditingWithNegativeDisparity(
                     Math.abs(oldAmount - currentAmount), pizzaService.getIdByGivenName(name));
         }
+    }
+
+    public void subtractOldValueOfAmount(Integer subValue, String name) {
+        statisticsRepository.subtractFromOldAmountValue(subValue, pizzaService.getIdByGivenName(name));
     }
 }
