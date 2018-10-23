@@ -103,6 +103,10 @@ public class OrderController {
     public String updatePizzaOrder(@RequestParam(value = "editedName") String name,
                                    @RequestParam(value = "amount") Integer amount,
                                    @RequestParam Long id, @AuthenticationPrincipal User user) {
+        if (amount < 1) {
+            throw new RuntimeException("Not acceptable amount value");
+        }
+
         if (pizzaService.checkIfPizzaExists(name)) {
             if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
 //                statisticsService.increaseNumberOfTotalOrders(amount, pizzaService.getIdByGivenName(name));

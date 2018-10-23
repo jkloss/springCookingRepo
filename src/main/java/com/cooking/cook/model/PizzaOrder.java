@@ -6,10 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -25,6 +22,7 @@ public class PizzaOrder {
     @NotBlank
     private String orderName;
     @Min(value = 1)
+    @Max(value = 100)
     @NotNull
     private Integer amount;
     @NotNull

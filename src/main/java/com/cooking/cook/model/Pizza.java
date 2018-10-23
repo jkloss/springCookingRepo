@@ -19,10 +19,12 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Max(value = 150)
+    @Min(value = 0)
+    @Max(value = 10000)
     private Double price;
     @NotNull
     @Min(value = 10)
+    @Max(value = 1000)
     private Integer diameter;
     @NotBlank
     @Length(max = 256)
