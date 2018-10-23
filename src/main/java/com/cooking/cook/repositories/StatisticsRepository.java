@@ -24,6 +24,7 @@ public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
                                                                  @Param("id") Long id);
     @Transactional
     @Modifying
-    @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders - :subtractValue where s.id = :id")
+    @Query("update Statistics s set s.totalNumberOfOrders = (s.totalNumberOfOrders - :subtractValue) + " +
+            "abs(s.totalNumberOfOrders - :subtractValue) where s.id = :id")
     void subtractFromOldAmountValue(@Param("subtractValue") Integer subtractValue, @Param("id") Long id);
 }
