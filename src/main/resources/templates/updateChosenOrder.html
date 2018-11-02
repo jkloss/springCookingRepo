@@ -7,6 +7,8 @@
 <body>
 <form action="#" th:action="@{/doUpdate}" th:method="put">
     <input type="hidden" name="id" th:value="${id}">
+    <input type="hidden" name="oldName" th:value="${oldName}">
+    <input type="hidden" name="oldAmount" th:value="${oldAmount}">
     <input type="text" th:name="editedName" th:placeholder="New + ' ' + name">
     <input type="text" th:name="amount" th:placeholder="Amount">
     <button type="submit">Submit</button>

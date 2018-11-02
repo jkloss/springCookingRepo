@@ -94,23 +94,27 @@ public class OrderController {
     }
 
     @GetMapping("/doUpdate")
-    public String getNewCredentialsView(@RequestParam Long id, Model model) {
+    public String getNewCredentialsView(@RequestParam Long id, @RequestParam String oldName,
+                                        @RequestParam Integer oldAmount, Model model) {
         model.addAttribute("id", id);
+        model.addAttribute("oldName", oldName);
+        model.addAttribute("oldAmount", oldAmount);
         return "updateChosenOrder";
     }
 
     @PutMapping("/doUpdate")
     public String updatePizzaOrder(@RequestParam(value = "editedName") String name,
                                    @RequestParam(value = "amount") Integer amount,
-                                   @RequestParam Long id, @AuthenticationPrincipal User user) {
+                                   @RequestParam Long id, @RequestParam String oldName,
+                                   @RequestParam Integer oldAmount, @AuthenticationPrincipal User user) {
         if (amount < 1) {
             throw new RuntimeException("Not acceptable amount value");
         }
 
         if (pizzaService.checkIfPizzaExists(name)) {
             if (!orderService.checkIfOrderExistsForLoggedUser(name, user)) {
-//                statisticsService.increaseNumberOfTotalOrders(amount, pizzaService.getIdByGivenName(name));
-//                statisticsService.subtractOldValueOfAmount(amount, orderService.getOrderNameById(id));
+                statisticsService.increaseNumberOfTotalOrders(amount, pizzaService.getIdByGivenName(name));
+                statisticsService.subtractOldValueOfAmount(oldAmount, oldName);
                 orderService.editOrderWithoutPrice(name, amount, user.getUsername(), id);
                 orderService.editPrice(name, pizzaService.getPizzaPriceWithRepository(name), user.getUsername());
             } else if (orderService.checkIfOrderExistsForLoggedUser(name, user) &&
