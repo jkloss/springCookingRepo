@@ -16,6 +16,8 @@ public class StatisticsController {
     @GetMapping("/statistics")
     public String getStatistics(Model model) {
         model.addAttribute("statList", statisticsService.getAllStatistics());
+        model.addAttribute("totalOrdersSum", statisticsService.sumAllTotalOrders());
+        model.addAttribute("favouritePizzaAllTime", statisticsService.getFavouritePizzaThroughAllTime());
         return "statisticsView";
     }
 }

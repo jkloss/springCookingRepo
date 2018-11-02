@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Statistics</title>
+    <style>
+        #separator {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <table border="1">
@@ -16,6 +21,11 @@
         <td th:text="${stat.totalNumberOfOrders}"></td>
         <td th:text="${stat.ordersInMonth}"></td>
     </tr>
+    <tr>
+        <td id="separator" th:text="'sum'"></td>
+        <td th:text="${totalOrdersSum}"></td>
+    </tr>
 </table>
+<h2 th:text="'Favourtie pizza from all time: ' + ${favouritePizzaAllTime}"></h2>
 </body>
 </html>

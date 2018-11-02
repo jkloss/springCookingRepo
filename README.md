@@ -19,4 +19,6 @@
 
 - edit your order
 
+- see statistics
+
 and many others... :)
