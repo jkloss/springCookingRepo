@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Transactional
     @Modifying
@@ -26,4 +28,5 @@ public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
     @Modifying
     @Query("update Statistics s set s.totalNumberOfOrders = s.totalNumberOfOrders - :subtractValue where s.id = :id")
     void subtractFromOldAmountValue(@Param("subtractValue") Integer subtractValue, @Param("id") Long id);
+    List<Statistics> findAll();
 }

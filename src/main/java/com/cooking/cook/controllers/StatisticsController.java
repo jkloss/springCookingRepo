@@ -2,6 +2,7 @@ package com.cooking.cook.controllers;
 
 import com.cooking.cook.service.StatisticsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -12,8 +13,9 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
-    @GetMapping("/createRecord")
-    public String getStatistics() {
-        return "startCollectingStats";
+    @GetMapping("/statistics")
+    public String getStatistics(Model model) {
+        model.addAttribute("statList", statisticsService.getAllStatistics());
+        return "statisticsView";
     }
 }

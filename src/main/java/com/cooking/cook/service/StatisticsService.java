@@ -1,7 +1,10 @@
 package com.cooking.cook.service;
 
+import com.cooking.cook.model.Statistics;
 import com.cooking.cook.repositories.StatisticsRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StatisticsService {
@@ -28,5 +31,9 @@ public class StatisticsService {
 
     public void subtractOldValueOfAmount(Integer subValue, String name) {
         statisticsRepository.subtractFromOldAmountValue(subValue, pizzaService.getIdByGivenName(name));
+    }
+
+    public List<Statistics> getAllStatistics() {
+        return statisticsRepository.findAll();
     }
 }
