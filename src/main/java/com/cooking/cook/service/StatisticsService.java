@@ -5,6 +5,7 @@ import com.cooking.cook.repositories.StatisticsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 @Service
@@ -44,12 +45,16 @@ public class StatisticsService {
                 .sum();
     }
 
-    public int getFavouritePizzaThroughAllTime() {
-        OptionalInt max = statisticsRepository.findAll().stream()
+    public String getFavouritePizzaThroughAllTime() {
+         OptionalInt max = statisticsRepository.findAll().stream()
                 .mapToInt(Statistics::getTotalNumberOfOrders)
                 .max();
-        
 
-        return max.getAsInt();
+         Optional<String> favouritePizza =  statisticsRepository.findAll().stream()
+                 .filter(s -> s.getTotalNumberOfOrders() == max.getAsInt())
+                 .map(p -> p.getPizza().getName())
+                 .findFirst();
+
+         return favouritePizza.get();
     }
 }
