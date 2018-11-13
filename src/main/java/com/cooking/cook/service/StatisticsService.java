@@ -5,14 +5,16 @@ import com.cooking.cook.repositories.StatisticsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.OptionalInt;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class StatisticsService {
 
     private StatisticsRepository statisticsRepository;
     private PizzaService pizzaService;
+
     public StatisticsService(StatisticsRepository statisticsRepository, PizzaService pizzaService) {
         this.statisticsRepository = statisticsRepository;
         this.pizzaService = pizzaService;
@@ -46,19 +48,25 @@ public class StatisticsService {
     }
 
     public String getFavouritePizzaThroughAllTime() {
-         OptionalInt max = statisticsRepository.findAll().stream()
+        OptionalInt max = statisticsRepository.findAll().stream()
                 .mapToInt(Statistics::getTotalNumberOfOrders)
                 .max();
 
-         if (!max.isPresent()) {
-             return "no data";
-         }
+        if (!max.isPresent()) {
+            return "no data";
+        }
 
-         Optional<String> favouritePizza =  statisticsRepository.findAll().stream()
-                 .filter(s -> s.getTotalNumberOfOrders() == max.getAsInt())
-                 .map(p -> p.getPizza().getName())
-                 .findFirst();
+        List<String> favouritePizzas = statisticsRepository.findAll().stream()
+                .filter(s -> s.getTotalNumberOfOrders() == max.getAsInt())
+                .map(p -> p.getPizza().getName())
+                .collect(toList());
 
-         return favouritePizza.get();
+        String result = "";
+
+        for (String s : favouritePizzas) {
+            result = result.concat(s + ", ");
+        }
+
+        return result.substring(0, result.length() - 2);
     }
 }
