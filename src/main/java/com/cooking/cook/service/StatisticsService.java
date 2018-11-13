@@ -50,6 +50,10 @@ public class StatisticsService {
                 .mapToInt(Statistics::getTotalNumberOfOrders)
                 .max();
 
+         if (!max.isPresent()) {
+             return "no data";
+         }
+
          Optional<String> favouritePizza =  statisticsRepository.findAll().stream()
                  .filter(s -> s.getTotalNumberOfOrders() == max.getAsInt())
                  .map(p -> p.getPizza().getName())
