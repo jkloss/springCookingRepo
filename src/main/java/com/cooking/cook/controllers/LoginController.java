@@ -62,4 +62,11 @@ public class LoginController {
         new SecurityContextLogoutHandler().logout(request, response, authentication);
         return "logoutConfirm";
     }
+
+    @GetMapping("/logout")
+    public String logoutStuff(HttpServletRequest request, HttpServletResponse response) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        new SecurityContextLogoutHandler().logout(request, response, authentication);
+        return "customLoginForm";
+    }
 }
